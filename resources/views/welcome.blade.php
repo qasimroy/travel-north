@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="bg-white">
+<div class=" ps-3">
     Hello!
 </div>
 @endsection
