@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "formulahendry.auto-rename-tag",
+        "amiralizadeh9480.laravel-extra-intellisense",
+        "mohamedbenhida.laravel-intellisense",
+        "bmewburn.vscode-intelephense-client"
+    ]
+}

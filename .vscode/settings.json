@@ -1,0 +1,11 @@
+{
+    "editor.tabSize": 4,
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.php$",
+                "cmd": "composer run ide-helper"
+            }
+        ]
+    }
+}
