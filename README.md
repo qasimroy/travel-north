@@ -11,6 +11,7 @@ php artisan key:generate
 php artisan config:clear
 php artisan migrate
 php artisan db:Seed --class=RolesAndPermissionsSeeder
+php artisan db:Seed --class=ServicesSeeder
 ```
 
 ## Running the project
