@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\BookingsController;
+use App\Http\Controllers\ServiceProviderController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +27,8 @@ Auth::routes();
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/bookings', [BookingsController::class, 'index'])->name('bookings');
+Route::get('/service-providers', [ServiceProviderController::class, 'index'])->name('service-providers');
+Route::get('/services', [ServicesController::class, 'index'])->name('services');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+

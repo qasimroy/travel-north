@@ -2,7 +2,6 @@
 
 @section('content')
 
-@include('layouts.header')
-@include('layouts.footer')
+@include('dashboard')
 
 @endsection

@@ -38,8 +38,8 @@ app.mount("#app");
 
 
 var el = document.getElementById("wrapper");
-    var toggleButton = document.getElementById("menu-toggle");
+var toggleButton = document.getElementById("menu-toggle");
 
-    toggleButton.onclick = function () {
+toggleButton.onclick = function () {
     el.classList.toggle("toggled");
 };
