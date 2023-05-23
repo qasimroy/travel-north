@@ -24,23 +24,16 @@ class RolesAndPermissionsSeeder extends Seeder
         $serviceProviderRole = Role::create(['name' => 'Service Provider']);
         $userRole = Role::create(['name' => 'User']);
 
-        $user = User::factory()->create([
+        $user = User::create([
             'name' => 'Admin',
             'email' => 'admin@travel-north.com',
             'password' => 'test@123'
         ]);
         $user->assignRole($adminRole);
 
-        $user = User::factory()->create([
-            'name' => 'Service Provider',
-            'email' => 'service-provider@travel-north.com',
-            'password' => 'test@123'
-        ]);
-        $user->assignRole($serviceProviderRole);
-
-        $user = User::factory()->create([
-            'name' => 'Simple User',
-            'email' => 'simple-user@travel-north.com',
+        $user = User::create([
+            'name' => 'Qasim',
+            'email' => 'qasim@travel-north.com',
             'password' => 'test@123'
         ]);
         $user->assignRole($userRole);

@@ -31,4 +31,3 @@ Route::get('/bookings', [BookingsController::class, 'index'])->name('bookings');
 Route::get('/service-providers', [ServiceProviderController::class, 'index'])->name('service-providers');
 Route::get('/services', [ServicesController::class, 'index'])->name('services');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-

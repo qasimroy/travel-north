@@ -7,5 +7,9 @@
                 "cmd": "composer run ide-helper"
             }
         ]
+    },
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
     }
 }
