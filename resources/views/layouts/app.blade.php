@@ -22,8 +22,8 @@
 
 <body  style="background: #D3F8EA;">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
+            <div class="container ">
                 <i class="fas fa-align-left primary-text fs-4 me-5" style="color: #009d63" id="menu-toggle" onclick=""></i>
                 <div>
                     <a class="navbar-brand" href="{{ url('/') }}">

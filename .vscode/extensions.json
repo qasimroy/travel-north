@@ -3,6 +3,7 @@
         "formulahendry.auto-rename-tag",
         "amiralizadeh9480.laravel-extra-intellisense",
         "mohamedbenhida.laravel-intellisense",
-        "bmewburn.vscode-intelephense-client"
+        "bmewburn.vscode-intelephense-client",
+        "emeraldwalk.runonsave"
     ]
 }

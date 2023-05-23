@@ -20,9 +20,9 @@ class RolesAndPermissionsSeeder extends Seeder
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $adminRole = Role::create(['name' => 'admin']);
-        $serviceProviderRole = Role::create(['name' => 'service-provider']);
-        $userRole = Role::create(['name' => 'user']);
+        $adminRole = Role::create(['name' => 'Admin']);
+        $serviceProviderRole = Role::create(['name' => 'Service Provider']);
+        $userRole = Role::create(['name' => 'User']);
 
         $user = User::factory()->create([
             'name' => 'Admin',
