@@ -27,7 +27,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body>
+<body class="primary-bg">
     <div id="app">
         @include('_partials._navbar')
 
