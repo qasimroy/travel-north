@@ -17,19 +17,14 @@
                         <div class="offcanvas-body">
                             <form class="row g-3 text-dark">
                                 <div class="col-12">
-                                <label for="service" class="form-label">Select a Service</label>
-                                <input type="text" class="form-control" name="service" id="service" placeholder="">
+                                    <x-form-select label="Select a Service" name="service" placeholder="Select a Service" required>
+                                        @foreach ($service as $services)
+                                        <option value="">{{ $services }}</option>
+                                        @endforeach
+                                    </x-form-select>
                                 </div>
                                 <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                    Check me out
-                                    </label>
-                                </div>
-                                </div>
-                                <div class="col-12">
-                                <button type="submit" class="btn text-white" style="background: #67dcb1;">Add</button>
+                                    <button type="submit" class="btn cta">Add</button>
                                 </div>
                             </form>
                         </div>
