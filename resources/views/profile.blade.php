@@ -10,15 +10,15 @@
                 @csrf
                 <div class="container w-75 pt-5">
                     <div class="row">
+                        {{-- <div class="col-lg-6 col-md-6 col-sm-12">
+                            <x-input type="text" name="name" label="Name" value="{{-- {{$user->name}} --}}{{-- "/> --}}
+                            {{-- <x-input type="password" name="password" label="Password" />  value="{{ old('password') }}"  
+                            {{-- </div>
                         <div class="col-lg-6 col-md-6 col-sm-12">
-                            <x-input type="text" name="name" label="Name" value="{{-- {{$user->name}} --}}"/>
-                            <x-input type="password" name="password" label="Password" />  {{--value="{{ old('password') }}"  --}}
-                            </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12">
-                            <x-input type="text" name="email" label="Email"  value="{{-- {{$user->email}} --}}"/>
+                            <x-input type="text" name="email" label="Email"  value="{{$user->email}}"/>
                             <x-input type="password" name="confirm_password" label="Confirm Password" />
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="form-group mt-2 p-2">
                         <input type="submit" value="Submit" name="submit" id="" class="btn" style="background: #67dcb1; color: white;">
                     </div>
