@@ -7,20 +7,29 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
-        //
+        $service = new Service();
+        $data = compact('service');
+        return view('services')->with($data);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+
+    public function create(Request $request)
     {
-        //
+
+        $service = new Service;
+        $service->name = $request['name'];
+        $service->price = $request['price'];
+        $service->save();
+        return view('services');
     }
 
     /**
@@ -36,7 +45,8 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        $data = compact('service');
+        return view('services')->with($data);
     }
 
     /**

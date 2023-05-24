@@ -3,10 +3,9 @@
 @section('content')
 <div class="container py-5 my-5">
     <div class="row d-flex justify-content-center align-items-center">
-        <div class="col-lg-6 col-md-8">
+        <div class="col-lg-5 col-md-8">
             <div class="card">
-                <div class="card-header text-dark"><b>Login</b></div>
-
+                <div class="card-header text-dark primary-bg"><b>Login</b></div>
                 <div class="card-body">
                     <x-form :action="route('login')">
                         <x-form-input name="email" label="Email" type="email" required autofocus />

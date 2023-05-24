@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-5 my-5 ">
+<div class="container py-3 ">
     <div class="row justify-content-center">
         <div class="col-md-9 col-lg-6">
             <div class="card">
@@ -13,7 +13,7 @@
                         <x-form-input name="email" label="Email" type="email" required />
                         <x-form-input name="cnic" label="CNIC" required />
                         <x-form-input name="phone" label="Phone" required />
-                        <x-form-input name="address" label="Address" required />
+                        <x-form-input name="address" label="Address" required/>
                         <x-form-input name="password" label="Password" type="password" required />
                         <x-form-input name="password_confirmation" label="Confirm Password" type="password" required />
 

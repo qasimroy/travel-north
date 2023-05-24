@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\ServiceProviderController;
-use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
@@ -29,5 +29,5 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/bookings', [BookingsController::class, 'index'])->name('bookings');
 Route::get('/service-providers', [ServiceProviderController::class, 'index'])->name('service-providers');
-Route::get('/services', [ServicesController::class, 'index'])->name('services');
+Route::get('/services', [ServiceController::class, 'index'])->name('services');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');

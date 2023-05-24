@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ServiceProviderController extends Controller
 {
- 
+
     public function __construct()
     {
         $this->middleware('auth');

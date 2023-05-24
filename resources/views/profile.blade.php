@@ -19,8 +19,8 @@
                             <x-input type="password" name="confirm_password" label="Confirm Password" />
                         </div>--}}
                     </div> 
-                    <div class="form-group mt-2 p-2">
-                        <input type="submit" value="Submit" name="submit" id="" class="btn" style="background: #67dcb1; color: white;">
+                    <div class="form-group mt-2 p-2 bg-white">
+                        <input type="submit" value="Submit" name="submit" id="" class="btn cta">
                     </div>
                 </div>
             </form>

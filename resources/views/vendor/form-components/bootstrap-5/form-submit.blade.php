@@ -1,5 +1,5 @@
 <button {!! $attributes->merge([
-    'class' => 'btn btn-primary',
+    'class' => 'btn btn-primary my-2',
     'type' => 'submit'
     ]) !!}
     >
