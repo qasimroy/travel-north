@@ -18,10 +18,10 @@
                     <form class="row g-3 text-dark" action="{{ route('services.store') }}" method="POST">
                         @csrf
                         <div class="col-12">
-                            <x-form-input name="name" label="Service Name" type="text" required autofocus />
+                            <x-form-input name="name" label="Service Name" type="text" placeholder="" required autofocus />
                         </div>
                         <div class="col-12">
-                            <x-form-input name="price" label="Price" type="text" required autofocus />
+                            <x-form-input name="price" label="Price" type="text" placeholder="1000, 2000 etc" required autofocus />
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn cta">Add</button>
@@ -56,7 +56,6 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
-                        
                     </td>
                 </tr>
                 @php
