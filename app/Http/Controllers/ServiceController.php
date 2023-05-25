@@ -23,8 +23,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        $services = Service::getEnumValues('name');
-        return view('services')->with('services');
+        return view('services');
     }
 
     /**
