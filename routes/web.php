@@ -25,9 +25,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/bookings', [BookingsController::class, 'index'])->name('bookings');
 Route::get('/service-providers', [ServiceProviderController::class, 'index'])->name('service-providers');
-Route::get('/services', [ServiceController::class, 'index'])->name('services');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+Route::post('/services', [ServiceController::class, 'store'])->name('services.store');
+Route::get('/services/{service}/edit', [ServiceController::class, 'edit'])->name('services.edit');
+Route::post('/services/{service}', [ServiceController::class, 'update'])->name('services.update');
+Route::delete('/services/{service}', [ServiceController::class, 'destroy'])->name('services.destroy');

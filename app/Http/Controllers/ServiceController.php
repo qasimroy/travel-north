@@ -11,25 +11,20 @@ class ServiceController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
-        $service = new Service();
-        $data = compact('service');
-        return view('services')->with($data);
+        $services = Service::all();
+        return view('services', compact('services'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-
-    public function create(Request $request)
+    public function create()
     {
-
-        $service = new Service;
-        $service->name = $request['name'];
-        $service->price = $request['price'];
-        $service->save();
-        return view('services');
+        $services = Service::getEnumValues('name');
+        return view('services')->with('services');
     }
 
     /**
@@ -37,7 +32,12 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $service = new Service;
+        $service->name = $request->input('name');
+        $service->price = $request->input('price');
+        $service->save();
+
+        return redirect()->route('services.index')->with('success', 'Service created successfully.');
     }
 
     /**
@@ -45,8 +45,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        $data = compact('service');
-        return view('services')->with($data);
+        return view('services', compact('service'));
     }
 
     /**
@@ -54,7 +53,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        return view('edit-service', compact('service'));
     }
 
     /**
@@ -62,7 +61,11 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        $service->name = $request->input('name');
+        $service->price = $request->input('price');
+        $service->save();
+
+        return redirect()->route('services.index')->with('success', 'Service updated successfully.');
     }
 
     /**
@@ -70,6 +73,8 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+
+        return redirect('/services');
     }
 }
