@@ -1,4 +1,4 @@
-@include('layouts.header')
+@include('admin.layouts.header')
 <h2 class="fs-2 m-0">Dashboard</h2>
           </div>
       </nav>
@@ -145,4 +145,4 @@
 <!-- /#page-content-wrapper -->
 </div>
 <!-- here -->
-@include('layouts.footer')
+@include('admin.layouts.footer')

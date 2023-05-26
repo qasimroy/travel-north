@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 @section('content')
-    @include('layouts.header')
+    @include('admin.layouts.header')
     <form class="row g-3 text-dark" action="{{ route('services.update', ['service' => $service]) }}" method="POST">
         @csrf
         <div class="col-12">

@@ -33,6 +33,6 @@ class HomeController extends Controller
             $query->where('name', 'Service Provider');
         })->count();
 
-        return view('home', compact('serviceCount', 'userCount', 'serviceProviderCount'));
+        return view('admin.home', compact('serviceCount', 'userCount', 'serviceProviderCount'));
     }
 }

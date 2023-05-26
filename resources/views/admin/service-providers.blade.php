@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
-@include('layouts.header')
+@include('admin.layouts.header')
                 <h2 class="fs-2 m-0">Service Providers</h2>
             </div>
         </nav>
@@ -51,6 +51,6 @@
 <!-- /#page-content-wrapper -->
 </div>
 <!-- here -->
-@include('layouts.footer')
+@include('admin.layouts.footer')
 
 @endsection

@@ -12,6 +12,6 @@ class BookingsController extends Controller
     }
     public function index()
     {
-        return view('bookings');
+        return view('admin.bookings');
     }
 }

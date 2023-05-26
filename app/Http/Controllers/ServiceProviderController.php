@@ -13,6 +13,6 @@ class ServiceProviderController extends Controller
     }
     public function index()
     {
-        return view('service-providers');
+        return view('admin.service-providers');
     }
 }
