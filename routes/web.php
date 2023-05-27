@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\AdminHomeController;
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ServiceProviderHomeController;
+use App\Http\Controllers\UserHomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +29,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/user/home', [UserHomeController::class, 'index'])->name('user.home')->middleware('restrict.user');
+Route::get('/service-providers/home', [ServiceProviderHomeController::class, 'index'])->name('service-providers.home')->middleware('restrict.service-provider');
+Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin.home')->middleware('restrict.admin');
 Route::get('/bookings', [BookingsController::class, 'index'])->name('bookings');
 Route::get('/service-providers', [ServiceProviderController::class, 'index'])->name('service-providers');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
