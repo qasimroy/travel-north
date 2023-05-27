@@ -5,9 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-9 col-lg-6">
             <div class="card">
-                <div class="card-header"><b>Register</b></div>
-
-                <div class="card-body">
+                <div class="card-header primary-bg"><b>Register</b></div>
+                
+                <div class="card-body ">
                     <x-form :action="route('register')">
                         <x-form-input name="name" label="Name" required autofocus />
                         <x-form-input name="email" label="Email" type="email" required />
