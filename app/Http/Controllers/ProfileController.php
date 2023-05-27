@@ -14,10 +14,18 @@ class ProfileController extends Controller
     }
     public function index()
     {
-        $adminRole = Role::where('name', 'Admin')->firstOrFail();
-        $user = $adminRole->users()->first();
+        $user = auth()->user();
+        if ($user->hasRole('Admin')) {
+            return redirect()->route('admin.profile');
+        } elseif ($user->hasRole('Service Provider')) {
+            return redirect()->route('service-provider.profile');
+        } else {
+            return redirect()->route('user.profile');
+        }
+        // $adminRole = Role::where('name', 'Admin')->firstOrFail();
+        // $user = $adminRole->users()->first();
 
-        return view('admin.profile', compact('user'));
+        // return view('admin.profile', compact('user'));
     }
     public function update(Request $request)
     {

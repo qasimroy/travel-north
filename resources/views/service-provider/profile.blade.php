@@ -6,7 +6,7 @@
             </div>
         </nav>
         <div class="container-fluid px-4">
-            <form action="{{ route('profile.update',['profile' => $user->id]) }} " method="POST">
+            <form action="{{ route('service-provider.profile.update',['profile' => $user->id]) }} " method="POST">
                 @csrf
                 <div class="container w-75 pt-5">
                     <div class="row bg-white p-5 rounded">
