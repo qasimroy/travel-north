@@ -29,6 +29,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/bookings', [BookingsController::class, 'index'])->name('bookings');
 Route::get('/service-providers', [ServiceProviderController::class, 'index'])->name('service-providers');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+Route::post('/profile/{profile}', [ProfileController::class, 'update'])->name('profile.update');
 
 Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
 Route::post('/services', [ServiceController::class, 'store'])->name('services.store');

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->enum('name', ["Hotel", "Coach", "Tour", "Shuttle"])->nullable();
+            $table->string('name');
             $table->float('price');
             $table->timestamps();
         });
