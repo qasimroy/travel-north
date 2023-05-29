@@ -2,6 +2,7 @@
     <div class="container ">
         <div>
             <a class="navbar-brand" href="{{ url('/') }}">
+                <img src="{{ asset('images/logo.png') }}" class="logo" alt="Website Logo">
                 {{ config('app.name', 'Laravel') }}
             </a>
         </div>

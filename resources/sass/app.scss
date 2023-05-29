@@ -35,13 +35,20 @@
     background: #67dcb1;
     color: white;
   }
+  .cta:hover{
+    background: #67dcb1;
+  }
+
+  .logo{
+    width:8%;
+  }
   
   .rounded-full {
     border-radius: 100%;
   }
   
   #wrapper {
-    overflow-x: hidden;
+    overflow-x: scroll;
     background-image: linear-gradient(
       to right,
       #baf3d7,
