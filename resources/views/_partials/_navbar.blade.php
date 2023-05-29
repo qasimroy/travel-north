@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
-    <div class="container ">
-        <div>
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('images/logo.png') }}" class="logo" alt="Website Logo">
-                {{ config('app.name', 'Laravel') }}
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <div class="container">
+        <div class="d-flex align-items-center">
+            <a class="navbar-brand d-flex" href="{{ url('/') }}">
+                <img src="{{ asset('images/logo.png') }}" class="logo" alt="App Logo">
+                <span class="app-name">{{ config('app.name', 'Laravel') }}</span>
             </a>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"

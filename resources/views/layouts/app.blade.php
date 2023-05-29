@@ -29,7 +29,7 @@
 </head>
 
 <body class="primary-bg">
-    <div id="app">
+    <div id="app" class="main-bg h-100v">
         @include('_partials._navbar')
 
         <main class="">

@@ -43,13 +43,34 @@
     width:8%;
   }
   
+  .h-100v{
+    height:100vh;
+  }
+.app-name {
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 10px;
+    /* Add any other styles for the app name as needed */
+}
+
+@media (max-width: 767px) {
+    .logo {
+        display: none;
+        /* Modify the logo size for smaller screens */
+    }
+    .app-name{
+      margin: 0;
+    }
+}
+
   .rounded-full {
     border-radius: 100%;
   }
-  .h-60{
-    height: 60%;
+  .main-bg{
+    background-image: url(/public/images/bg1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
   }
-  
   #wrapper {
     overflow-x: scroll;
     background-image: linear-gradient(
