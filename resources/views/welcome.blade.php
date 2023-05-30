@@ -78,9 +78,9 @@
                 <div class="vr p-0"></div>
                 <div class="col-lg-5">
                     <x-form>
-                        <x-form-input name="name" label="Name" type="text" required autofocus />
-                        <x-form-input name="email" label="Email" type="email" required autofocus />
-                        <x-form-textarea name="message" label="Message" required autofocus/>
+                        <x-form-input name="name" label="Name" type="text" required  />
+                        <x-form-input name="email" label="Email" type="email" required  />
+                        <x-form-textarea name="message" label="Message" required />
                         <x-form-submit/>
                     </x-form>
                 </div>
@@ -88,5 +88,4 @@
         </div>
     </section>
 </main>
-<button id="scrollToTopBtn" class="btn cta">Scroll to Top</button>
 @endsection
