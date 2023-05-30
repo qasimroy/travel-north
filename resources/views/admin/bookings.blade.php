@@ -17,6 +17,11 @@
                         </div>
                         <div class="offcanvas-body">
                             <form class="row g-3 text-dark">
+                                <div class="col-12">
+                                  <x-form-select label="Service Provider" name="serviceProvider" placeholder="Select a Service Provider" required>
+                                    <option value="">..</option>
+                                  </x-form-select>
+                                </div>
                                 <div class="col-6">
                                   <x-form-input name="startDate" label="Start" type="date" required autofocus />
                                 </div>
@@ -24,12 +29,12 @@
                                   <x-form-input name="endDate" label="End" type="date" required autofocus />
                                 </div>
                                 <div class="col-md-6">
-                                  <x-form-select label="From" name="from" placeholder="Select Your Origin" required>
+                                  <x-form-select label="Origin" name="origin" placeholder="Select Your Origin" required>
                                     <option value="">..</option>
                                 </x-form-select>
                                 </div>
                                 <div class="col-md-6">
-                                  <x-form-select label="To" name="to" placeholder="Select Your Destination" required>
+                                  <x-form-select label="Destination" name="destination" placeholder="Select Your Destination" required>
                                     <option value="">..</option>
                                   </x-form-select>
                                 </div>

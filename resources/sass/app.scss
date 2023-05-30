@@ -7,7 +7,6 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
-
 :root {
     --main-bg-color: #009d63;
     --main-text-color: #009d63;
@@ -82,6 +81,20 @@
       #ddfaef
     );
   }
+  .wrapper {
+    overflow-x: none;
+    background-image: linear-gradient(
+      to right,
+      #baf3d7,
+      #c2f5de,
+      #cbf7e4,
+      #d4f8ea,
+      #ddfaef
+    );
+  }
+  .text-cyan{
+    color: #67dcb1;
+  }
   
   #sidebar-wrapper {
     min-height: 100vh;
@@ -139,3 +152,11 @@
       margin-left: -15rem;
     }
   }
+
+  #scrollToTopBtn {
+    z-index: 99;
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+}
