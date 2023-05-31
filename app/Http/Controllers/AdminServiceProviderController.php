@@ -11,7 +11,7 @@ class AdminServiceProviderController extends Controller
     {
         $serviceProvider = User::whereHas('roles', function ($query) {
             $query->where('name', 'Service Provider');
-        });
-        return view('admin.service-providers');
+        })->get();
+        return view('admin.service-providers', compact('serviceProvider'));
     }
 }

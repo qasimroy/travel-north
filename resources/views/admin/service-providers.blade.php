@@ -5,7 +5,7 @@
                 <h2 class="fs-2 m-0">Service Providers</h2>
             </div>
         </nav>
-        <div class="container-fluid px-4">
+        <div class="container-fluid p-4">
             <table class="table">
                 <thead>
                     <tr>
@@ -14,6 +14,7 @@
                         <th>Email</th>
                         <th>Phone no</th>
                         <th>Address</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,8 +29,8 @@
                             <td>{{ $ServiceProvider->phone }}</td>
                             <td>{{ $ServiceProvider->address }}</td>
                             <td>
-                                <a href=""><button class="btn btn-danger">Trash</button></a>
                                 <a href=""><button class="btn btn-primary">Edit</button></a>
+                                <a href=""><button class="btn btn-danger">Trash</button></a>
                             </td>
                         </tr>
                         @php

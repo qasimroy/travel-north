@@ -16,10 +16,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <form class="row g-3 text-dark" action="{{ route('services.store') }}" method="POST">
+                    <form class="row g-3 text-dark" action="{{ route('service-provider.services.store') }}" method="POST">
                         @csrf
                         <div class="col-12">
-                            <x-form-input name="name" label="Service Name" type="text" placeholder="" required autofocus />
+                            <x-form-select label="Service Name" name="name" placeholder="Select Services" required>
+                                @foreach ($services as $Service)
+                                    <option value={{ $Service->id }}>{{ $Service->name }}</option>
+                                @endforeach
+                            </x-form-select>
+                        </div>
+                        <div class="col-12">
+                            <x-form-textarea name="description" label="Description" required autofocus />
                         </div>
                         <div class="col-12">
                             <x-form-input name="price" label="Price" type="text" placeholder="1000, 2000 etc" required autofocus />
@@ -37,6 +44,7 @@
             <tr>
                 <th>Sr No.</th>
                 <th>Service Name</th>
+                <th>Service Description</th>
                 <th>Price</th>
                 <th>Action</th>
             </tr>
@@ -45,14 +53,15 @@
             @php
                 $count = 1;
             @endphp
-            @foreach ($services as $service)
+            @foreach ($serviceProviderServices as $ServiceProviderServices)
                 <tr>
                     <td>{{ $count }}</td>
-                    <td>{{ $service->name }}</td>
-                    <td>{{ $service->price }}</td>
+                    <td>{{ $ServiceProviderServices->name }}</td>
+                    <td>{{ $ServiceProviderServices->description }}</td>
+                    <td>{{ $ServiceProviderServices->price }}</td>
                     <td>
-                        <a href="{{ route('services.edit', $service->id) }}"><button class="btn btn-primary">Edit</button></a>
-                        <form action="{{ route('services.destroy', $service->id) }}" method="POST" style="display: inline;">
+                        <a href="{{ route('service-provider.services.edit', $ServiceProviderServices->id) }}"><button class="btn btn-primary">Edit</button></a>
+                        <form action="{{ route('service-provider.services.destroy', $ServiceProviderServices->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>

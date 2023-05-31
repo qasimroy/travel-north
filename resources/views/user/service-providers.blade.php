@@ -17,23 +17,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @php
+                    @php
                         $count = 1;
                     @endphp
-                    @foreach ($user as $u)
+                    @foreach ($serviceProvider as $ServiceProvider)
                         <tr>
                             <td>{{{ $count }}}</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $ServiceProvider->name }}</td>
+                            <td>{{ $ServiceProvider->email }}</td>
+                            <td>{{ $ServiceProvider->phone }}</td>
+                            <td>{{ $ServiceProvider->address }}</td>
                             <td>
-                                <a href=""><button class="btn btn-danger">Trash</button></a>
-                                <a href=""><button class="btn btn-primary">Edit</button></a>
+                                <a href=""><button class="btn btn-success">Show Services</button></a>
                             </td>
                         </tr>
                         @php
                             $count++;
                         @endphp
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
             <div class="pagination justify-content-center custom-pagination">
