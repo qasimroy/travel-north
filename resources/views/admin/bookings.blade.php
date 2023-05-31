@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
 @include('admin.layouts.header')
+
                 <h2 class="fs-2 m-0">Bookings</h2>
             </div>
         </nav>
@@ -76,7 +78,7 @@
                                 </div>
                               </form>
                         </div>
-                      </div>  
+                      </div>
                     </a>
                     <a href="#">
                         <button class="btn btn-danger d-inline-block m-2">Go to Trash</button>
@@ -132,6 +134,7 @@
 <!-- /#page-content-wrapper -->
 </div>
 <!-- here -->
+
 @include('admin.layouts.footer')
 
 @endsection
