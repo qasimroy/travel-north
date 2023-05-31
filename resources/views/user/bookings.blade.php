@@ -8,76 +8,79 @@
         <div class="container-fluid px-4">
             <div class="row float-end">
                 <div class="">
-                    <a href="#">
-                        <button class="btn text-white" type="button" data-bs-toggle="offcanvas" style="background: #67dcb1; " data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Add</button>
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                        <div class="offcanvas-header text-dark">
-                            <h5 class="offcanvas-title text-dark" id="offcanvasRightLabel">Book a Trip</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body">
-                            <form class="row g-3 text-dark">
-                                <div class="col-6">
-                                  <label for="startDate" class="form-label">Start</label>
-                                  <input type="date" class="form-control" id="startDate" placeholder="1234 Main St">
+                  <a>
+                    <button class="btn text-white cta" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Add</button>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                      <div class="offcanvas-header text-dark">
+                          <h5 class="offcanvas-title text-dark" id="offcanvasRightLabel">Book a Trip</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                      </div>
+                      <div class="offcanvas-body">
+                          <form class="row g-3 text-dark">
+                              <div class="col-12">
+                                <x-form-select label="Service Provider" name="serviceProvider" placeholder="Select a Service Provider" required>
+                                  <option value="">..</option>
+                                </x-form-select>
+                              </div>
+                              <div class="col-6">
+                                <x-form-input name="startDate" label="Start" type="date" required autofocus />
+                              </div>
+                              <div class="col-6">
+                                <x-form-input name="endDate" label="End" type="date" required autofocus />
+                              </div>
+                              <div class="col-md-6">
+                                <x-form-select label="Origin" name="origin" placeholder="Select Your Origin" required>
+                                  <option value="">..</option>
+                              </x-form-select>
+                              </div>
+                              <div class="col-md-6">
+                                <x-form-select label="Destination" name="destination" placeholder="Select Your Destination" required>
+                                  <option value="">..</option>
+                                </x-form-select>
+                              </div>
+                              <div class="col-md-6">
+                                <x-form-input name="passengers" label="Passengers" type="number" required autofocus />
+                              </div>
+                              <div class="col-md-6">
+                                <x-form-select label="Hotel" name="hotel" placeholder="Select Hotel" >
+                                  <option value="1">1 star</option>
+                                  <option value="2">2 star</option>
+                                  <option value="3">3 star</option>
+                                  <option value="4">4 star</option>
+                                  <option value="5">5 star</option>
+                                </x-form-select>
+                              </div>
+                              <div class="col-md-6">
+                                <x-form-select label="Shuttle" name="shuttle" placeholder="Select Shuttle" >
+                                  <option value="1">Car</option>
+                                  <option value="2">Bike</option>
+                                </x-form-select>
+                              </div>
+                              <div class="col-md-6">
+                                <x-form-select label="Coach" name="coach" placeholder="Select Coach" required>
+                                <option value="">Toyota Hiace</option>
+                                <option value="">Toyota Coaster</option>
+                                <option value="">Daewoo </option>
+                              </x-form-select>
+                              </div>
+                              <div class="col-12">
+                                <div class="form-check">
+                                  <input class="form-check-input" type="checkbox" id="gridCheck">
+                                  <label class="form-check-label" for="gridCheck">
+                                    Check me out
+                                  </label>
                                 </div>
-                                <div class="col-6">
-                                  <label for="endDate" class="form-label">End</label>
-                                  <input type="date" class="form-control" id="endDate" placeholder="1234 Main St">
-                                </div>
-                                <div class="col-12">
-                                  <label for="inputAddress2" class="form-label">Address 2</label>
-                                  <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                                </div>
-                                <div class="col-md-4">
-                                  <label for="inputCity" class="form-label">From</label>
-                                  <input type="text" class="form-control" id="inputCity">
-                                </div>
-                                <div class="col-md-4">
-                                  <label for="inputState" class="form-label">To</label>
-                                  <select id="inputState" class="form-select">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                  </select>
-                                </div>
-                                <div class="col-md-4">
-                                  <label for="inputZip" class="form-label">Passengers</label>
-                                  <input type="text" class="form-control" id="inputZip">
-                                </div>
-                                <div class="col-md-4">
-                                  <label for="inputCity" class="form-label">Hotel</label>
-                                  <input type="text" class="form-control" id="inputCity">
-                                </div>
-                                <div class="col-md-4">
-                                  <label for="inputState" class="form-label">Bike</label>
-                                  <select id="inputState" class="form-select">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                  </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="checkbox" class="form-check-input s" id="inputZip">
-                                  <label for="inputZip" class="form-label">Car</label>
-                                </div>
-                                <div class="col-12">
-                                  <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                      Check me out
-                                    </label>
-                                  </div>
-                                </div>
-                                <div class="col-12">
-                                  <button type="submit" class="btn text-white" style="background: #67dcb1;">Book</button>
-                                </div>
-                              </form>
-                        </div>
-                        </div>
-                        
-                    </a>
-                    <a href="#">
+                              </div>
+                              <div class="col-12">
+                                <button type="submit" class="btn text-dark cta" >Book</button>
+                              </div>
+                            </form>
+                      </div>
+                    </div>
+                  </a>
+                  <a href="#">
                         <button class="btn btn-danger d-inline-block m-2">Go to Trash</button>
-                    </a>
+                  </a>
                 </div>
             </div>
             <table class="table">

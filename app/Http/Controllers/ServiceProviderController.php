@@ -13,6 +13,13 @@ class ServiceProviderController extends Controller
     }
     public function index()
     {
-        return view('admin.service-providers');
+        $user = auth()->user();
+
+        if ($user->hasRole('User')) {
+            return redirect()->route('user.service-providers');
+        } elseif ($user->hasRole('Admin')) {
+            return redirect()->route('admin.service-providers');
+        }
+        return redirect()->route('service-providers')->with('error', 'Unknown user role.');
     }
 }

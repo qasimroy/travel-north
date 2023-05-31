@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 @include('service-provider.layouts.header')
     <h2 class="fs-2 m-0">Service</h2>
 </div>
@@ -8,7 +9,7 @@
 <div class="container-fluid px-4">
     <div class="row float-end">
         <div class="">
-            <button class="btn text-white" type="button" data-bs-toggle="offcanvas" style="background: #67dcb1; " data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Add</button>
+            <button class="btn text-white cta" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Add</button>
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                 <div class="offcanvas-header text-dark">
                     <h5 class="offcanvas-title text-dark" id="offcanvasRightLabel">Add a Service</h5>
