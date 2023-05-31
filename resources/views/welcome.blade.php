@@ -79,7 +79,7 @@
                 <div class="col-lg-5">
                     <x-form>
                         <x-form-input name="name" label="Name" type="text" required  />
-                        <x-form-input name="email" label="Email" type="email" required  />
+                        <x-form-input name="email" label="Email" type="email"  required  />
                         <x-form-textarea name="message" label="Message" required />
                         <x-form-submit/>
                     </x-form>

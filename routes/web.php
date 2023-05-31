@@ -63,9 +63,9 @@ Route::group(['middleware' => ['restrict.service-provider']], function () {
     Route::get('/service-provider/bookings', [ServiceProviderBookingController::class, 'index'])->name('service-provider.bookings');
     Route::get('/service-provider/services', [ServiceProviderServicesController::class, 'index'])->name('service-provider.services');
     Route::post('/service-provider/services', [ServiceProviderServicesController::class, 'store'])->name('service-provider.services.store');
-    Route::get('/service-provider/services/{service}/edit', [ServiceProviderServicesController::class, 'edit'])->name('service-provider.services.edit');
-    Route::post('/service-provider/services/{service}', [ServiceProviderServicesController::class, 'update'])->name('service-provider.services.update');
-    Route::delete('/service-provider/services/{service}', [ServiceProviderServicesController::class, 'destroy'])->name('service-provider.services.destroy');
+    Route::get('/service-provider/services/{serviceProviderServices}/edit', [ServiceProviderServicesController::class, 'edit'])->name('service-provider.services.edit');
+    Route::post('/service-provider/services/{serviceProviderServices}', [ServiceProviderServicesController::class, 'update'])->name('service-provider.services.update');
+    Route::delete('/service-provider/services/{serviceProviderServices}', [ServiceProviderServicesController::class, 'destroy'])->name('service-provider.services.destroy');
     Route::get('/service-provider/profile', [ServiceProviderProfileController::class, 'index'])->name('service-provider.profile');
     Route::post('/service-provider/profile/{profile}', [ServiceProviderProfileController::class, 'update'])->name('service-provider.profile.update');
 });

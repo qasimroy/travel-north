@@ -1,23 +1,36 @@
 @extends('layouts.app')
 @section('content')
     @include('service-provider.layouts.header')
-    <form class="row g-3 text-dark" action="{{ route('service-provider.services.update', ['serviceProviderServices' => $ServiceProviderServices]) }}" method="POST">
-        @csrf
-        <div class="col-12">
-            <x-form-select label="Service Name" name="name" value="{{ $ServiceProviderServices->name }}" placeholder="Select Services" required>
-                @foreach ($services as $Service)
-                    <option value={{ $Service->id }}>{{ $Service->name }}</option>
-                @endforeach
-            </x-form-select>
+            <h2 class="fs-2 m-0">Edit Service</h2>
         </div>
-        <div class="col-12">
-            <x-form-textarea name="description" label="Description" value="{{ $ServiceProviderServices->description }}" required autofocus />
+    </nav>
+    <div class="container d-flex justify-content-center">
+        <div class="w-50 p-5 bg-white rounded">
+            <form class="row g-3 text-dark" action="{{ route('service-provider.services.update', ['serviceProviderServices' => $serviceProviderServices]) }}" method="POST">
+                @csrf
+                <div class="col-12">
+                    <x-form-select label="Service Name" name="name" value="{{ $serviceProviderServices->name }}" placeholder="Select Services" required>
+                        @foreach ($services as $Service)
+                            <option value="{{ $Service->name }}">
+                                {{ $Service->name }}
+                            </option>
+                        @endforeach
+                    </x-form-select>
+                </div>
+                <div class="col-12">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="description" id="description" class="form-control" required autofocus>{{ $serviceProviderServices->description }}</textarea>
+                </div>
+                <div class="col-12">
+                    <x-form-input name="price" label="Price" type="text" value="{{ $serviceProviderServices->price }}" required autofocus />
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn cta">Update</button>
+                </div>
+            </form>
         </div>
-        <div class="col-12">
-            <x-form-input name="price" label="Price" type="text" value="{{ $ServiceProviderServices->price }}" required autofocus />
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn cta">Update</button>
-        </div>
-    </form>
+    </div>
+</div>
+<!-- /#page-content-wrapper -->
+</div>
 @endsection

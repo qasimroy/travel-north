@@ -21,7 +21,7 @@
                         <div class="col-12">
                             <x-form-select label="Service Name" name="name" placeholder="Select Services" required>
                                 @foreach ($services as $Service)
-                                    <option value={{ $Service->id }}>{{ $Service->name }}</option>
+                                    <option value="{{ $Service->name }}">{{ $Service->name }}</option>
                                 @endforeach
                             </x-form-select>
                         </div>
@@ -65,7 +65,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
+                        </form>                        
                     </td>
                 </tr>
                 @php
@@ -82,3 +82,5 @@
 @include('service-provider.layouts.footer')
 
 @endsection
+
+
