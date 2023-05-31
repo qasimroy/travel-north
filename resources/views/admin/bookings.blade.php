@@ -9,8 +9,8 @@
             <div class="row float-end">
                 <div class="">
                     <a>
-                        <button class="btn text-white cta" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Add</button>
-                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                      <button class="btn text-white cta" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Add</button>
+                      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                         <div class="offcanvas-header text-dark">
                             <h5 class="offcanvas-title text-dark" id="offcanvasRightLabel">Book a Trip</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -76,8 +76,7 @@
                                 </div>
                               </form>
                         </div>
-                        </div>
-                        
+                      </div>  
                     </a>
                     <a href="#">
                         <button class="btn btn-danger d-inline-block m-2">Go to Trash</button>
@@ -122,7 +121,6 @@
             <div class="pagination justify-content-center custom-pagination">
                 {{-- {{ $user->links('pagination::bootstrap-4') }} --}}
             </div>
-
         </div>
         
 
