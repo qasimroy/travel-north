@@ -15,13 +15,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <form class="row g-3 text-dark" action="{{ route('services.store') }}" method="POST">
+                    <form class="row g-3 text-dark" action="{{ route('admin.services.store') }}" method="POST">
                         @csrf
                         <div class="col-12">
                             <x-form-input name="name" label="Service Name" type="text" placeholder="" required autofocus />
-                        </div>
-                        <div class="col-12">
-                            <x-form-input name="price" label="Price" type="text" placeholder="1000, 2000 etc" required autofocus />
                         </div>
                         <div class="col-12">
                             <button type="submit" class="btn cta">Add</button>
@@ -36,7 +33,6 @@
             <tr>
                 <th>Sr No.</th>
                 <th>Service Name</th>
-                <th>Price</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -48,10 +44,9 @@
                 <tr>
                     <td>{{ $count }}</td>
                     <td>{{ $service->name }}</td>
-                    <td>{{ $service->price }}</td>
                     <td>
-                        <a href="{{ route('services.edit', $service->id) }}"><button class="btn btn-primary">Edit</button></a>
-                        <form action="{{ route('services.destroy', $service->id) }}" method="POST" style="display: inline;">
+                        <a href="{{ route('admin.services.edit', $service->id) }}"><button class="btn btn-primary">Edit</button></a>
+                        <form action="{{ route('admin.services.destroy', $service->id) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
