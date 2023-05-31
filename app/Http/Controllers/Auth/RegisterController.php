@@ -73,6 +73,9 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'cnic' => $data['cnic'],
+            'phone' => $data['phone'],
+            'address' => $data['address'],
         ]);
 
         $role = Role::where(['id' => $data['role']])->first();
