@@ -18,6 +18,9 @@ class ServiceProviderProfileController extends Controller
         $user = auth()->user();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
+        $user->cnic = $request->input('cnic');
+        $user->address = $request->input('address');
         $user->password = $request->input('password');
         $user->save();
 
