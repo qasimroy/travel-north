@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 
+
 class RegisterController extends Controller
 {
     /*
@@ -54,10 +55,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'role' => ['required', 'exists:roles,id'],
             'cnic' => ['required', 'string', 'min:13'],
             'phone' => ['required', 'string', 'min:11'],
-            'address' => ['required', 'string', 'min:5']
+            'address' => ['required', 'string', 'min:5'],
+            'role' => ['required', 'exists:roles,id'],
         ]);
     }
 
@@ -69,6 +70,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // dd($data);
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -78,7 +80,8 @@ class RegisterController extends Controller
             'address' => $data['address'],
         ]);
 
-        $role = Role::where(['id' => $data['role']])->first();
+
+        $role = Role::where('id', $data['role'])->first();
 
         $user->assignRole($role);
 

@@ -10,7 +10,7 @@
                 @csrf
                 <div class="container w-75 pt-5">
                     <div class="row bg-white p-5 rounded">
-                        <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="col-lg-6 col-md-12 col-sm-12">
                             <x-form-input name="name" label="Name" type="text" value="{{ $user->name }}" required autofocus />
                             <x-form-input name="email" label="Email" type="email" value="{{ $user->email }}" required autofocus />
                         </div>
