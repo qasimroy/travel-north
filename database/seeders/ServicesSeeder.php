@@ -14,14 +14,7 @@ class ServicesSeeder extends Seeder
      */
     public function run()
     {
-        Service::create([
-            'name' => 'Cab Booking',
-            'price' => 10.4,
-        ]);
-
-        Service::create([
-            'name' => 'Some Service',
-            'price' => 10.4,
-        ]);
+        Service::create(['name' => 'Cab Booking']);
+        Service::create(['name' => 'Some Service']);
     }
 }

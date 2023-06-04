@@ -10,7 +10,7 @@ class ServiceProviderServicesController extends Controller
 {
     public function index()
     {
-        $serviceProviderServices = ServiceProviderServices::all();
+        $serviceProviderServices = ServiceProviderServices::where('service_provider_id', auth()->user()->id)->get();
         $services = Service::all();
         return view('service-provider.services', compact('serviceProviderServices', 'services'));
     }
@@ -29,7 +29,8 @@ class ServiceProviderServicesController extends Controller
     public function store(Request $request)
     {
         $serviceProviderServices = new ServiceProviderServices;
-        $serviceProviderServices->name = $request->input('name');
+        $serviceProviderServices->service_id = $request->input('service_id');
+        $serviceProviderServices->service_provider_id = auth()->user()->id;
         $serviceProviderServices->description = $request->input('description');
         $serviceProviderServices->price = $request->input('price');
         $serviceProviderServices->save();
@@ -60,7 +61,7 @@ class ServiceProviderServicesController extends Controller
      */
     public function update(Request $request, ServiceProviderServices $serviceProviderServices)
     {
-        $serviceProviderServices->name = $request->input('name');
+        $serviceProviderServices->service_id = $request->input('service_id');
         $serviceProviderServices->description = $request->input('description');
         $serviceProviderServices->price = $request->input('price');
         $serviceProviderServices->save();

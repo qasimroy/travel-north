@@ -32,6 +32,13 @@ class RolesAndPermissionsSeeder extends Seeder
         $user->assignRole($adminRole);
 
         $user = User::create([
+            'name' => 'SP',
+            'email' => 'sp@travel-north.com',
+            'password' => 'test@123'
+        ]);
+        $user->assignRole($serviceProviderRole);
+
+        $user = User::create([
             'name' => 'Qasim',
             'email' => 'qasim@travel-north.com',
             'password' => 'test@123'
