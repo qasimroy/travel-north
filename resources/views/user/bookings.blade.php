@@ -76,10 +76,11 @@
                     <tr>
                         <th>Sr No.</th>
                         <th>Booking Date</th>
-                        <th>From</th>
-                        <th>To</th>
+                        <th>Origin</th>
+                        <th>Destination</th>
                         <th>Start Date</th>
                         <th>End Date</th>
+                        <th>Selected Services</th>
                         <th>Total Price</th>
                         <th>Status</th>
                         <th>Action</th>

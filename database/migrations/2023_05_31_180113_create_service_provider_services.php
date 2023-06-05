@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedInteger('service_id');
             $table->unsignedInteger('service_provider_id');
             $table->text('description');
-            $table->string('price');
+            $table->integer('price');
             $table->timestamps();
         });
     }

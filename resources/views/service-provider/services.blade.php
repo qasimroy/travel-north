@@ -33,7 +33,7 @@
                             <x-form-textarea name="description" label="Description" required autofocus />
                         </div>
                         <div class="col-12">
-                            <x-form-input name="price" label="Price" type="text" placeholder="1000, 2000 etc" required
+                            <x-form-input name="price" label="Price" type="number" placeholder="1000, 2000 etc" required
                                 autofocus />
                         </div>
                         <div class="col-12">
