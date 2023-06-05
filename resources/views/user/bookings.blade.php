@@ -17,25 +17,6 @@
                     </div>
                     <div class="offcanvas-body">
                       <form class="row g-3 text-dark">
-                        <!-- Existing form fields -->
-                    
-                        <div class="col-md-6">
-                            <x-form-select label="Service" name="service" placeholder="Select Service" onchange="handleServiceChange(this)" required>
-                                <option value="tour">Tour</option>
-                                <option value="hotel">Hotel</option>
-                                <option value="coach">Coach</option>
-                                <option value="shuttle">Shuttle</option>
-                            </x-form-select>
-                        </div>
-                    
-                        <div id="dynamic-fields-container" class="row"></div>
-                    
-                        <div class="col-12">
-                            <button type="submit" class="btn text-dark cta">Book</button>
-                        </div>
-                      </form>
-                    
-                      {{-- <form class="row g-3 text-dark">
                           <div class="col-6">
                             <x-form-input name="startDate" label="Start" type="date" required autofocus />
                           </div>
@@ -81,7 +62,7 @@
                           <div class="col-12">
                             <button type="submit" class="btn text-dark cta" >Book</button>
                           </div>
-                        </form> --}}
+                        </form>
                       </div>
                     </div>
                   </a>
