@@ -70,12 +70,12 @@
                                 @foreach ($service as $service)
                                     <tr>
                                         <td>{{ $serviceCount }}</td>
-                                        {{-- <td>{{ $service->service->name }}</td>
+                                        <td>{{ $service->service->name }}</td>
                                         <td>{{ $service->description }}</td>
                                         <td>{{ $service->price }}</td>
                                         <td>
                                             <a href="{{ route('user.service-providers.book') }}" class="btn btn-primary">Book</a>
-                                        </td> --}}
+                                        </td>
                                     </tr>
                                     @php
                                         $serviceCount++;
