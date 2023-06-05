@@ -53,6 +53,7 @@ Route::group(['middleware' => ['restrict.user']], function () {
     Route::get('/user/home', [UserHomeController::class, 'index'])->name('user.home');
     Route::get('/user/bookings', [UserBookingController::class, 'index'])->name('user.bookings');
     Route::get('/user/service-providers', [UserServiceProviderController::class, 'index'])->name('user.service-providers');
+    Route::get('/user/service-providers/book/', [UserServiceProviderController::class, 'book'])->name('user.service-providers.book');
     Route::get('/user/services', [UserServicesController::class, 'index'])->name('user.services');
     Route::get('/user/profile', [UserProfileController::class, 'index'])->name('user.profile');
     Route::post('/user/profile/{profile}', [UserProfileController::class, 'update'])->name('user.profile.update');
