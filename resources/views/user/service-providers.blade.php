@@ -45,7 +45,7 @@
         <!-- Modals for Services -->
         @foreach ($serviceProvider as $ServiceProvider)
         <div class="modal fade mt-5 pt-5" id="servicesModal{{ $ServiceProvider->id }}" tabindex="-1" aria-labelledby="servicesModal{{ $ServiceProvider->id }}Label" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog w-25">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="servicesModal{{ $ServiceProvider->id }}Label">Services provided by {{ $ServiceProvider->name }}</h5>
@@ -67,7 +67,7 @@
                                     $serviceCount = 1;
                                 @endphp
                                 
-                                @foreach ($service as $service)
+                                @foreach ($services[$ServiceProvider->id] as $service)
                                     <tr>
                                         <td>{{ $serviceCount }}</td>
                                         <td>{{ $service->service->name }}</td>

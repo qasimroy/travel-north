@@ -62,7 +62,7 @@
             <tr>
                 <td>{{ $count }}</td>
                 <td>{{ $serviceProviderServices->service->name }}</td>
-                <td>{{ $serviceProviderServices->description }}</td>
+                <td class="w-50">{{ $serviceProviderServices->description }}</td>
                 <td>{{ $serviceProviderServices->price }}</td>
                 <td>
                     <a href="{{ route('service-provider.services.edit', $serviceProviderServices->id) }}"><button

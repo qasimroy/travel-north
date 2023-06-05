@@ -15,8 +15,15 @@ class UserServiceProviderController extends Controller
             $query->where('name', 'Service Provider');
         })->get();
 
-        $service = ServiceProviderServices::where('service_provider_id', auth()->user()->id)->get();
-        return view('user.service-providers', compact('serviceProvider', 'service'));
+        $serviceProviderId = $serviceProvider->pluck('id')->toArray();
+        $services = [];
+
+        foreach ($serviceProviderId as $serviceProviderIds) {
+            $service = ServiceProviderServices::where('service_provider_id', $serviceProviderIds)->get();
+            $services[$serviceProviderIds] = $service;
+        }
+
+        return view('user.service-providers', compact('serviceProvider', 'services'));
     }
     public function book()
     {
