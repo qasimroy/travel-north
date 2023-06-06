@@ -22,8 +22,7 @@
                         method="POST">
                         @csrf
                         <div class="col-12">
-                            <x-form-select label="Service Name" name="service_id" placeholder="Select Services"
-                                required>
+                            <x-form-select label="Service Name" name="service_id" placeholder="Select Services" required>
                                 @foreach ($services as $service)
                                 <option value="{{ $service->id }}">{{ $service->name }}</option>
                                 @endforeach

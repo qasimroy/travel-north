@@ -36,10 +36,10 @@ class HomeController extends Controller
         } elseif ($user->hasRole('Admin')) {
             $serviceCount = Service::count();
             $userCount = User::whereHas('roles', function ($query) {
-                $query->where('name', 'user');
+                $query->where('name', 'User');
             })->count();
             $serviceProviderCount = User::whereHas('roles', function ($query) {
-                $query->where('name', 'service_provider');
+                $query->where('name', 'Service Provider');
             })->count();
             $data = compact('serviceCount', 'userCount', 'serviceProviderCount');
             return redirect()->route('admin.home')->with($data);

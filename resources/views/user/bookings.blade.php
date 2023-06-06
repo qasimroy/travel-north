@@ -23,42 +23,32 @@
                           <div class="col-6">
                             <x-form-input name="endDate" label="End" type="date" required autofocus />
                           </div>
-                          <div class="col-md-6">
-                            <x-form-select label="Origin" name="origin" placeholder="Select Your Origin" required>
-                              <option value="">..</option>
-                          </x-form-select>
-                          </div>
-                          <div class="col-md-6">
-                            <x-form-select label="Destination" name="destination" placeholder="Select Your Destination" required>
-                              <option value="">..</option>
+                          <div class="col-12">
+                            <x-form-select label="Service" name="service_id" placeholder="Select Services" required>
+                                @foreach ($services as $service)
+                                <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                @endforeach
                             </x-form-select>
                           </div>
-                          <div class="col-md-6">
-                            <x-form-input name="persons" label="Persons" type="number" required autofocus />
-                          </div>
-                          <div class="col-md-6">
-                            <x-form-select label="Hotel" name="hotel" placeholder="Select Hotel" >
-                              <option value="1">1 star</option>
-                              <option value="2">2 star</option>
-                              <option value="3">3 star</option>
-                              <option value="4">4 star</option>
-                              <option value="5">5 star</option>
+                          <div class="col-12">
+                            <x-form-select label="Service Provider" name="service_provider_id" placeholder="Select Service Providers" required>
                             </x-form-select>
                           </div>
-                          <div class="col-md-6">
-                            <x-form-select label="Shuttle" name="shuttle" placeholder="Select Shuttle" >
-                              <option value="1">Car</option>
-                              <option value="2">Bike</option>
-                            </x-form-select>
+                          <div class="col-12" id="service-details">
+                            <div class="d-none" id="tour">
+                              @include('user.serviceForm.tour')
+                            </div>
+                            <div class="d-none" id="coach">
+                              @include('user.serviceForm.coach')
+                            </div>
+                            <div class="d-none" id="hotel">
+                              @include('user.serviceForm.hotel')
+                            </div>
+                            <div class="d-none" id="shuttle">
+                              @include('user.serviceForm.shuttle')
+                            </div>
                           </div>
-                          <div class="col-md-6">
-                            <x-form-select label="Coach" name="coach" placeholder="Select Coach" >
-                            <option value="">Toyota Hiace</option>
-                            <option value="">Toyota Coaster</option>
-                            <option value="">Daewoo </option>
-                          </x-form-select>
-                          </div>
-                          
+
                           <div class="col-12">
                             <button type="submit" class="btn text-dark cta" >Book</button>
                           </div>
@@ -80,7 +70,7 @@
                         <th>Destination</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                        <th>Selected Services</th>
+                        <th>Selected Service</th>
                         <th>Total Price</th>
                         <th>Status</th>
                         <th>Action</th>
