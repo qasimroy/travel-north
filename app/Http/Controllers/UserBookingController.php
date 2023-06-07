@@ -140,6 +140,7 @@ class UserBookingController extends Controller
         $booking->coach = $request->input('coach') ?? null;
         $booking->shuttle = $request->input('shuttle') ?? null;
         $booking->price = null;
+        $booking->status = Booking::PENDING;
         $booking->save();
 
         return redirect()->route('user.bookings')->with('success', 'Booking updated successfully.');
