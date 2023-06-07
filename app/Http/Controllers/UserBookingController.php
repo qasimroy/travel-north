@@ -121,38 +121,24 @@ class UserBookingController extends Controller
             'Naltar Valley',
             'Fairy Meadows',
         ];
-
         return view('user.edit-booking', compact('bookings', 'services', 'cities'));
     }
 
     public function update(Request $request, Booking $booking)
     {
-        // Validate the request data
-        $validatedData = $request->validate([
-            'startDate' => 'required|date_format:Y-m-d',
-            'endDate' => 'required|date_format:Y-m-d',
-            'service_id' => 'required|exists:services,id',
-            'service_provider_id' => 'required|exists:users,id',
-            'origin' => 'required|string',
-            'destination' => 'sometimes|nullable|string',
-            'person' => 'required|integer',
-            'hotel' => 'sometimes|nullable|string',
-            'coach' => 'sometimes|nullable|string',
-            'shuttle' => 'sometimes|nullable|string',
-        ]);
 
-        // Update the booking attributes
-        $booking->start_date = Carbon::createFromFormat("Y-m-d", $validatedData['startDate'])->toDateTimeString();
-        $booking->end_date = Carbon::createFromFormat("Y-m-d", $validatedData['endDate'])->toDateTimeString();
-        $booking->service_id = $validatedData['service_id'];
-        $booking->service_provider_id = $validatedData['service_provider_id'];
-        $booking->origin = $validatedData['origin'];
-        $booking->destination = $validatedData['destination'] ?? null;
-        $booking->person = $validatedData['person'];
-        $booking->hotel = $validatedData['hotel'] ?? null;
-        $booking->coach = $validatedData['coach'] ?? null;
-        $booking->shuttle = $validatedData['shuttle'] ?? null;
-        // Update other booking attributes as needed
+        $user_id = Auth::id();
+        $booking->user_id = $user_id;
+        $booking->start_date = Carbon::createFromFormat("Y-m-d", $request->input('startDate'))->toDateTimeString();
+        $booking->end_date = Carbon::createFromFormat("Y-m-d", $request->input('endDate'))->toDateTimeString();
+        $booking->service_id = $request->input('service_id');
+        $booking->service_provider_id = $request->input('service_provider_id');
+        $booking->origin = $request->input('origin');
+        $booking->destination = $request->input('destination') ?? null;
+        $booking->person = $request->input('person');
+        $booking->hotel = $request->input('hotel') ?? null;
+        $booking->coach = $request->input('coach') ?? null;
+        $booking->shuttle = $request->input('shuttle') ?? null;
 
         $booking->save();
 
@@ -162,7 +148,6 @@ class UserBookingController extends Controller
     public function destroy(Booking $booking)
     {
         $booking->delete();
-
         return redirect()->route('user.bookings')->with('success', 'Booking deleted successfully.');
     }
 

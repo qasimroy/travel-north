@@ -9,13 +9,13 @@
         <form class="row g-3 text-dark" method="POST" action="{{ route('user.bookings.update', ['bookings' => $bookings]) }}">
             @csrf
                 <div class="col-md-6">
-                    <x-form-input name="startDate" label="Start" type="date" required autofocus />
+                    <x-form-input name="startDate" label="Start" type="date" value="{{ $bookings->start_date }}" required autofocus />
                 </div>
                 <div class="col-md-6">
-                    <x-form-input name="endDate" label="End" type="date" required autofocus />
+                    <x-form-input name="endDate" label="End" type="date" value="{{ $bookings->end_date }}" required autofocus />
                 </div>
                 <div class="col-12">
-                    <x-form-select label="Service" name="service_id" placeholder="Select Services" required>
+                    <x-form-select label="Service" name="service_id" placeholder="" required>
                         @foreach ($services as $service)
                             <option value="{{ $service->id }}">{{ $service->name }}</option>
                         @endforeach
@@ -30,7 +30,7 @@
                         <div class="col-md-6">
                             <x-form-select label="Origin" name="origin" placeholder="Select Your Origin" required>
                                 @foreach($cities as $city)
-                                    <option value="{{ $city }}">{{ $city }}</option>
+                                    <option value="{{ $city }} ">{{ $city }}</option>
                                 @endforeach
                             </x-form-select>
                         </div>
@@ -42,7 +42,7 @@
                             </x-form-select>
                         </div>
                         <div class="col-md-6">
-                            <x-form-input name="person" label="Persons" type="number" required  />
+                            <x-form-input name="person" label="Persons" type="number" value="{{ $bookings->person }}" required  />
                         </div>
                         <div class="col-md-6">
                             <x-form-select label="Hotel" name="hotel" placeholder="Select Hotel" >
@@ -83,7 +83,7 @@
                             </x-form-select>
                         </div>
                         <div class="col-md-6">
-                            <x-form-input name="persons" label="Persons" type="number" required autofocus />
+                            <x-form-input name="person" label="Persons" type="number" value="{{ $bookings->person }}" required autofocus />
                         </div>
                         <div class="col-md-6">
                             <x-form-select label="Coach" name="coach" placeholder="Select Coach" >
@@ -102,7 +102,7 @@
                             </x-form-select>
                         </div>
                         <div class="col-md-6">
-                            <x-form-input name="persons" label="Persons" type="number" required autofocus />
+                            <x-form-input name="person" label="Persons" type="number" value="{{ $bookings->person }}" required autofocus />
                         </div>
                         <div class="col-md-6">
                             <x-form-select label="Hotel" name="hotel" placeholder="Select Hotel" >
@@ -124,7 +124,7 @@
                             </x-form-select>
                         </div>
                         <div class="col-md-6">
-                            <x-form-input name="persons" label="Persons" type="number" required autofocus />
+                            <x-form-input name="person" label="Persons" type="number" value="{{ $bookings->person }}" required autofocus />
                         </div>
                         <div class="col-md-6">
                             <x-form-select label="Shuttle" name="shuttle" placeholder="Select Shuttle" >
@@ -136,7 +136,7 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    <x-form-submit>Book</x-form-submit>
+                    <x-form-submit>Update</x-form-submit>
                 </div>
             </form>
     </div>

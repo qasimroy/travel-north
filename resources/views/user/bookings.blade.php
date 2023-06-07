@@ -97,7 +97,7 @@
                                         </x-form-select>
                                     </div>
                                     <div class="col-md-6">
-                                        <x-form-input name="persons" label="Persons" type="number" required autofocus />
+                                        <x-form-input name="person" label="Persons" type="number" required autofocus />
                                     </div>
                                     <div class="col-md-6">
                                         <x-form-select label="Coach" name="coach" placeholder="Select Coach" >
@@ -116,7 +116,7 @@
                                         </x-form-select>
                                     </div>
                                     <div class="col-md-6">
-                                        <x-form-input name="persons" label="Persons" type="number" required autofocus />
+                                        <x-form-input name="person" label="Persons" type="number" required autofocus />
                                     </div>
                                     <div class="col-md-6">
                                         <x-form-select label="Hotel" name="hotel" placeholder="Select Hotel" >
@@ -138,7 +138,7 @@
                                         </x-form-select>
                                     </div>
                                     <div class="col-md-6">
-                                        <x-form-input name="persons" label="Persons" type="number" required autofocus />
+                                        <x-form-input name="person" label="Persons" type="number" required autofocus />
                                     </div>
                                     <div class="col-md-6">
                                         <x-form-select label="Shuttle" name="shuttle" placeholder="Select Shuttle" >
