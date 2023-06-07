@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('shuttle')->nullable();
             $table->integer('price')->nullable();
             $table->enum('status', [Booking::ACCEPTED, Booking::REJECTED, Booking::COMPLETED, Booking::PENDING]);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

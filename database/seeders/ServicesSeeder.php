@@ -14,7 +14,9 @@ class ServicesSeeder extends Seeder
      */
     public function run()
     {
-        Service::create(['name' => 'Cab Booking']);
-        Service::create(['name' => 'Some Service']);
+        Service::create(['name' => 'Tour(Tour Includes all services)']);
+        Service::create(['name' => 'Hotel']);
+        Service::create(['name' => 'Coach']);
+        Service::create(['name' => 'Shuttle']);
     }
 }

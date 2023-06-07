@@ -13,6 +13,36 @@ class Booking extends Model
     const REJECTED = 'rejected';
     const COMPLETED = 'completed';
 
+    const CITIES = [
+        'Karachi',
+        'Lahore',
+        'Islamabad',
+        'Rawalpindi',
+        'Faisalabad',
+        'Peshawar',
+        'Gujranwala',
+        'Gilgit',
+        'Skardu',
+        'Murree',
+        'Abbottabad',
+        'Naran',
+        'Kaghan',
+        'Swat',
+        'Chitral',
+        'Hunza',
+        'Sawat',
+        'Baltistan',
+        'Muzaffarabad',
+        'Neelum Valley',
+        'Shogran',
+        'Ghizer',
+        'Astore',
+        'Hunza Valley',
+        'Khunjerab Pass',
+        'Naltar Valley',
+        'Fairy Meadows',
+    ];
+
     use HasFactory;
     use SoftDeletes;
 

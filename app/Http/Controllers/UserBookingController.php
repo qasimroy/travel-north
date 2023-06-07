@@ -15,35 +15,8 @@ class UserBookingController extends Controller
     {
         $bookings = Booking::where('user_id', auth()->user()->id)->get();
         $services = Service::all();
-        $cities = [
-            'Karachi',
-            'Lahore',
-            'Islamabad',
-            'Rawalpindi',
-            'Faisalabad',
-            'Peshawar',
-            'Gujranwala',
-            'Gilgit',
-            'Skardu',
-            'Murree',
-            'Abbottabad',
-            'Naran',
-            'Kaghan',
-            'Swat',
-            'Chitral',
-            'Hunza',
-            'Sawat',
-            'Baltistan',
-            'Muzaffarabad',
-            'Neelum Valley',
-            'Shogran',
-            'Ghizer',
-            'Astore',
-            'Hunza Valley',
-            'Khunjerab Pass',
-            'Naltar Valley',
-            'Fairy Meadows',
-        ];
+
+        $cities = Booking::CITIES;
 
         return view('user.bookings', compact('services', 'bookings', 'cities'));
     }
@@ -58,7 +31,7 @@ class UserBookingController extends Controller
             'service_provider_id' => 'required|exists:users,id',
             'origin' => 'required|string',
             'destination' => 'sometimes|nullable|string',
-            'person' => 'required|integer',
+            'persons' => 'required|integer',
             'hotel' => 'sometimes|nullable|string',
             'coach' => 'sometimes|nullable|string',
             'shuttle' => 'sometimes|nullable|string',
@@ -76,7 +49,7 @@ class UserBookingController extends Controller
         $booking->service_provider_id = $validatedData['service_provider_id'];
         $booking->origin = $validatedData['origin'];
         $booking->destination = $validatedData['destination'] ?? null;
-        $booking->person = $validatedData['person'];
+        $booking->person = $validatedData['persons'];
         $booking->hotel = $validatedData['hotel'] ?? null;
         $booking->coach = $validatedData['coach'] ?? null;
         $booking->shuttle = $validatedData['shuttle'] ?? null;
@@ -92,63 +65,35 @@ class UserBookingController extends Controller
     public function edit(Booking $bookings)
     {
         $services = Service::all();
-        $cities = [
-            'Karachi',
-            'Lahore',
-            'Islamabad',
-            'Rawalpindi',
-            'Faisalabad',
-            'Peshawar',
-            'Gujranwala',
-            'Gilgit',
-            'Skardu',
-            'Murree',
-            'Abbottabad',
-            'Naran',
-            'Kaghan',
-            'Swat',
-            'Chitral',
-            'Hunza',
-            'Sawat',
-            'Baltistan',
-            'Muzaffarabad',
-            'Neelum Valley',
-            'Shogran',
-            'Ghizer',
-            'Astore',
-            'Hunza Valley',
-            'Khunjerab Pass',
-            'Naltar Valley',
-            'Fairy Meadows',
-        ];
+
+        $cities = Booking::CITIES;
+
         return view('user.edit-booking', compact('bookings', 'services', 'cities'));
     }
 
-    public function update(Request $request, Booking $booking)
+    public function update(Request $request, int $booking)
     {
-
-        $user_id = Auth::id();
-        $booking->user_id = $user_id;
+        $booking = Booking::find($booking);
         $booking->start_date = Carbon::createFromFormat("Y-m-d", $request->input('startDate'))->toDateTimeString();
         $booking->end_date = Carbon::createFromFormat("Y-m-d", $request->input('endDate'))->toDateTimeString();
         $booking->service_id = $request->input('service_id');
         $booking->service_provider_id = $request->input('service_provider_id');
         $booking->origin = $request->input('origin');
         $booking->destination = $request->input('destination') ?? null;
-        $booking->person = $request->input('person');
+        $booking->person = $request->input('persons');
         $booking->hotel = $request->input('hotel') ?? null;
         $booking->coach = $request->input('coach') ?? null;
         $booking->shuttle = $request->input('shuttle') ?? null;
         $booking->price = null;
         $booking->status = Booking::PENDING;
-        $booking->save();
+        $booking->update();
 
         return redirect()->route('user.bookings')->with('success', 'Booking updated successfully.');
     }
 
-    public function destroy(Booking $booking)
+    public function destroy(int $booking)
     {
-        $booking->delete();
+        Booking::find($booking)->delete();
         return redirect()->route('user.bookings')->with('success', 'Booking deleted successfully.');
     }
 
