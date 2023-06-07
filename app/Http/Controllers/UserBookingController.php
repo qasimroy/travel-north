@@ -139,7 +139,7 @@ class UserBookingController extends Controller
         $booking->hotel = $request->input('hotel') ?? null;
         $booking->coach = $request->input('coach') ?? null;
         $booking->shuttle = $request->input('shuttle') ?? null;
-
+        $booking->price = null;
         $booking->save();
 
         return redirect()->route('user.bookings')->with('success', 'Booking updated successfully.');
