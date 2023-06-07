@@ -43,12 +43,16 @@
                                 <div class="d-none row" id="tour">
                                     <div class="col-md-6">
                                         <x-form-select label="Origin" name="origin" placeholder="Select Your Origin" required>
-                                        <option value="">..</option>
+                                            @foreach($cities as $city)
+                                                <option value="">{{ $city }}</option>
+                                            @endforeach
                                         </x-form-select>
                                     </div>
                                     <div class="col-md-6">
                                         <x-form-select label="Destination" name="destination" placeholder="Select Your Destination" required>
-                                        <option value="">..</option>
+                                            @foreach($cities as $city)
+                                                <option value="">{{ $city }}</option>
+                                            @endforeach
                                         </x-form-select>
                                     </div>
                                     <div class="col-md-6">
@@ -80,12 +84,16 @@
                                 <div class="d-none row" id="coach">
                                     <div class="col-md-6">
                                         <x-form-select label="Origin" name="origin" placeholder="Select Your Origin" required>
-                                        <option value="..</option>
+                                            @foreach($cities as $city)
+                                                <option value="">{{ $city }}</option>
+                                            @endforeach
                                         </x-form-select>
                                     </div>
                                     <div class="col-md-6">
                                         <x-form-select label="Destination" name="destination" placeholder="Select Your Destination" required>
-                                        <option value="">..</option>
+                                            @foreach($cities as $city)
+                                                <option value="">{{ $city }}</option>
+                                            @endforeach
                                         </x-form-select>
                                     </div>
                                     <div class="col-md-6">
@@ -102,7 +110,9 @@
                                 <div class="d-none row" id="hotel">
                                     <div class="col-md-12">
                                         <x-form-select label="Origin" name="origin" placeholder="Select Your Origin" required>
-                                            <option value="">..</option>
+                                            @foreach($cities as $city)
+                                                <option value="">{{ $city }}</option>
+                                            @endforeach
                                         </x-form-select>
                                     </div>
                                     <div class="col-md-6">
@@ -122,7 +132,9 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                         <x-form-select label="Origin" name="origin" placeholder="Select Your Origin" required>
-                                            <option value="">..</option>
+                                            @foreach($cities as $city)
+                                                <option value="">{{ $city }}</option>
+                                            @endforeach
                                         </x-form-select>
                                     </div>
                                     <div class="col-md-6">

@@ -15,7 +15,40 @@ class UserBookingController extends Controller
     {
         $bookings = Booking::where('user_id', auth()->user()->id)->get();
         $services = Service::all();
-        return view('user.bookings', compact('services', 'bookings'));
+        $cities = [
+            'Karachi',
+            'Lahore',
+            'Islamabad',
+            'Rawalpindi',
+            'Faisalabad',
+            'Multan',
+            'Hyderabad',
+            'Peshawar',
+            'Quetta',
+            'Gujranwala',
+            'Gilgit',
+            'Skardu',
+            'Murree',
+            'Abbottabad',
+            'Naran',
+            'Kaghan',
+            'Swat',
+            'Chitral',
+            'Hunza',
+            'Sawat',
+            'Baltistan',
+            'Muzaffarabad',
+            'Neelum Valley',
+            'Shogran',
+            'Ghizer',
+            'Astore',
+            'Hunza Valley',
+            'Khunjerab Pass',
+            'Naltar Valley',
+            'Fairy Meadows',
+        ];
+
+        return view('user.bookings', compact('services', 'bookings', 'cities'));
     }
 
     public function store(Request $request)
