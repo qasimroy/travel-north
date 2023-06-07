@@ -16,42 +16,126 @@
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
-                      <form class="row g-3 text-dark">
-                          <div class="col-6">
-                            <x-form-input name="startDate" label="Start" type="date" required autofocus />
-                          </div>
-                          <div class="col-6">
-                            <x-form-input name="endDate" label="End" type="date" required autofocus />
-                          </div>
-                          <div class="col-12">
-                            <x-form-select label="Service" name="service_id" placeholder="Select Services" required>
-                                @foreach ($services as $service)
-                                <option value="{{ $service->id }}">{{ $service->name }}</option>
-                                @endforeach
-                            </x-form-select>
-                          </div>
-                          <div class="col-12">
-                            <x-form-select label="Service Provider" name="service_provider_id" placeholder="Select Service Providers" required>
-                            </x-form-select>
-                          </div>
-                          <div class="col-12" id="service-details">
-                            <div class="d-none" id="tour">
-                              @include('user.serviceForm.tour')
+                      <form class="row g-3 text-dark" method="POST" action="{{ route('user.bookings.store') }}">
+                        @csrf
+                            <div class="col-6">
+                                <x-form-input name="startDate" label="Start" type="date" required autofocus />
                             </div>
-                            <div class="d-none" id="coach">
-                              @include('user.serviceForm.coach')
+                            <div class="col-6">
+                                <x-form-input name="endDate" label="End" type="date" required autofocus />
                             </div>
-                            <div class="d-none" id="hotel">
-                              @include('user.serviceForm.hotel')
+                            <div class="col-12">
+                                <x-form-select label="Service" name="service_id" placeholder="Select Services" required>
+                                    @foreach ($services as $service)
+                                    <option value="{{ $service->id }}">{{ $service->name }}</option>
+                                    @endforeach
+                                </x-form-select>
                             </div>
-                            <div class="d-none" id="shuttle">
-                              @include('user.serviceForm.shuttle')
+                            <div class="col-12">
+                                <x-form-select label="Service Provider" name="service_provider_id" placeholder="Select Service Providers" required>
+                                </x-form-select>
                             </div>
-                          </div>
-
-                          <div class="col-12">
-                            <button type="submit" class="btn text-dark cta" >Book</button>
-                          </div>
+                            <div class="col-12" id="service-details">
+                                <div class="d-none row" id="tour">
+                                    <div class="col-md-6">
+                                        <x-form-select label="Origin" name="origin" placeholder="Select Your Origin" required>
+                                        <option value="..">..</option>
+                                        </x-form-select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <x-form-select label="Destination" name="destination" placeholder="Select Your Destination" required>
+                                        <option value="..">..</option>
+                                        </x-form-select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <x-form-input name="persons" label="Persons" type="number" required  />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <x-form-select label="Hotel" name="hotel" placeholder="Select Hotel" >
+                                        <option value="1">1 star</option>
+                                        <option value="2">2 star</option>
+                                        <option value="3">3 star</option>
+                                        <option value="4">4 star</option>
+                                        <option value="5">5 star</option>
+                                        </x-form-select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <x-form-select label="Shuttle" name="shuttle" placeholder="Select Shuttle" >
+                                        <option value="1">Car</option>
+                                        <option value="2">Bike</option>
+                                        </x-form-select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <x-form-select label="Coach" name="coach" placeholder="Select Coach" >
+                                        <option value="hiace">Toyota Hiace</option>
+                                        <option value="coaster">Toyota Coaster</option>
+                                        <option value="daewoo">Daewoo </option>
+                                        </x-form-select>
+                                    </div>
+                                </div>
+                                <div class="d-none row" id="coach">
+                                    <div class="col-md-6">
+                                        <x-form-select label="Origin" name="origin" placeholder="Select Your Origin" required>
+                                        <option value="..">..</option>
+                                        </x-form-select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <x-form-select label="Destination" name="destination" placeholder="Select Your Destination" required>
+                                        <option value="..">..</option>
+                                        </x-form-select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <x-form-input name="persons" label="Persons" type="number" required autofocus />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <x-form-select label="Coach" name="coach" placeholder="Select Coach" >
+                                        <option value="Hiace">Toyota Hiace</option>
+                                        <option value="Coaster">Toyota Coaster</option>
+                                        <option value="Daewoo">Daewoo </option>
+                                        </x-form-select>
+                                    </div>
+                                </div>
+                                <div class="d-none row" id="hotel">
+                                    <div class="col-md-12">
+                                        <x-form-select label="Origin" name="origin" placeholder="Select Your Origin" required>
+                                            <option value="..">..</option>
+                                        </x-form-select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <x-form-input name="persons" label="Persons" type="number" required autofocus />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <x-form-select label="Hotel" name="hotel" placeholder="Select Hotel" >
+                                            <option value="1">1 star</option>
+                                            <option value="2">2 star</option>
+                                            <option value="3">3 star</option>
+                                            <option value="4">4 star</option>
+                                            <option value="5">5 star</option>
+                                        </x-form-select>
+                                    </div>
+                                </div>
+                                <div class="d-none row" id="shuttle">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                        <x-form-select label="Origin" name="origin" placeholder="Select Your Origin" required>
+                                            <option value="..">..</option>
+                                        </x-form-select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <x-form-input name="persons" label="Persons" type="number" required autofocus />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <x-form-select label="Shuttle" name="shuttle" placeholder="Select Shuttle" >
+                                            <option value="1">Car</option>
+                                            <option value="2">Bike</option>
+                                        </x-form-select>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <x-form-submit>Book</x-form-submit>
+                            </div>
                         </form>
                       </div>
                     </div>

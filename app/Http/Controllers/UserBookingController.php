@@ -6,12 +6,14 @@ use App\Models\Booking;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Service;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UserBookingController extends Controller
 {
     public function index()
     {
+        // $booking = Booking::where('user_id', auth()->user()->id)->get();
         $services = Service::all();
         return view('user.bookings', compact('services'));
     }
@@ -20,18 +22,17 @@ class UserBookingController extends Controller
     {
         // Validate the request data
         $validatedData = $request->validate([
-            'startDate' => 'required|date',
-            'endDate' => 'required|date',
+            'startDate' => 'required|date_format:Y-m-d',
+            'endDate' => 'required|date_format:Y-m-d',
             'service_id' => 'required|exists:services,id',
             'service_provider_id' => 'required|exists:users,id',
             'origin' => 'required|string',
-            'destination' => 'nullable|string',
+            'destination' => 'sometimes|nullable|string',
             'person' => 'required|integer',
-            'hotel' => 'nullable|string',
-            'coach' => 'nullable|string',
-            'shuttle' => 'nullable|string',
-            'price' => 'nullable|integer',
-            'status' => 'required|in:accepted,rejected,completed,pending',
+            'hotel' => 'sometimes|nullable|string',
+            'coach' => 'sometimes|nullable|string',
+            'shuttle' => 'sometimes|nullable|string',
+            'price' => 'sometimes|nullable|integer',
         ]);
 
         // Fetch the current user ID
@@ -40,8 +41,8 @@ class UserBookingController extends Controller
         // Create a new booking instance and set its attributes
         $booking = new Booking();
         $booking->user_id = $user_id;
-        $booking->start_date = $validatedData['startDate'];
-        $booking->end_date = $validatedData['endDate'];
+        $booking->start_date = Carbon::createFromFormat("Y-m-d", $validatedData['startDate'])->toDateTimeString();
+        $booking->end_date = Carbon::createFromFormat("Y-m-d", $validatedData['endDate'])->toDateTimeString();
         $booking->service_id = $validatedData['service_id'];
         $booking->service_provider_id = $validatedData['service_provider_id'];
         $booking->origin = $validatedData['origin'];
@@ -51,7 +52,6 @@ class UserBookingController extends Controller
         $booking->coach = $validatedData['coach'];
         $booking->shuttle = $validatedData['shuttle'];
         $booking->price = $validatedData['price'];
-        $booking->status = $validatedData['status'];
         $booking->status = Booking::PENDING;
 
         // Save the booking

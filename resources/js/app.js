@@ -26,6 +26,8 @@ $(document).ready(function () {
     // Event handler for the service selection change
     $('select[name="service_id"]').on('change', function () {
         $('#service-details').children().addClass('d-none')
+        console.log($('#service-details [required]'));
+        $('#service-details [required]').removeAttr('required')
 
         const services = {
             'Tour(Tour Includes all services)': 'tour',
@@ -38,6 +40,9 @@ $(document).ready(function () {
 
         populateServiceProviders(serviceId);
 
-        $(`#${services[serviceName]}`).removeClass('d-none');
+        const $serviceDiv = $(`#${services[serviceName]}`)
+        $serviceDiv.removeClass('d-none');
+        $serviceDiv.children('input').attr('required', true)
+        $serviceDiv.children('select').attr('required', true)
     });
 });
