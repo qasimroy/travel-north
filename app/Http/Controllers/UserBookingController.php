@@ -13,9 +13,9 @@ class UserBookingController extends Controller
 {
     public function index()
     {
-        // $booking = Booking::where('user_id', auth()->user()->id)->get();
+        $bookings = Booking::where('user_id', auth()->user()->id)->get();
         $services = Service::all();
-        return view('user.bookings', compact('services'));
+        return view('user.bookings', compact('services', 'bookings'));
     }
 
     public function store(Request $request)
