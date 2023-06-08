@@ -1,20 +1,20 @@
 @extends('layouts.app')
 @section('content')
 @include('service-provider.layouts.header')
-<h2 class="fs-2 m-0">Edit Booking</h2>
+<h2 class="fs-2 m-0">Create Booking</h2>
 </div>
 </nav>
 <div class="container d-flex justify-content-center">
     <div class="w-50 p-5 bg-white rounded">
         <form class="row g-3 text-dark" method="POST"
-            action="{{ route('user.bookings.update', ['bookings' => $bookings]) }}">
+            action="{{ route('user.bookings.store') }}">
             @csrf
             <div class="col-md-6">
-                <x-form-input name="startDate" label="Start" type="date" value="{{ $bookings->start_date }}" required
+                <x-form-input name="startDate" label="Start" type="date" required
                     autofocus />
             </div>
             <div class="col-md-6">
-                <x-form-input name="endDate" label="End" type="date" value="{{ $bookings->end_date }}" required
+                <x-form-input name="endDate" label="End" type="date" required
                     autofocus />
             </div>
             <div class="col-12">
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <div class="d-none row" id="coach">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <x-form-select label="Origin" name="origin" placeholder="Select Your Origin" required>
                             @foreach($cities as $city)
                             <option value="{{ $city }}">{{ $city }}</option>
@@ -130,11 +130,11 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <x-form-input name="persons" label="Persons" type="number" value="{{ $bookings->person }}"
+                <x-form-input name="persons" label="Persons" type="number" value=""
                     required />
             </div>
             <div class="col-12">
-                <x-form-submit>Update</x-form-submit>
+                <x-form-submit>Create</x-form-submit>
             </div>
         </form>
     </div>

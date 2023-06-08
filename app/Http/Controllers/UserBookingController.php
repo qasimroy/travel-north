@@ -31,7 +31,7 @@ class UserBookingController extends Controller
             'service_provider_id' => 'required|exists:users,id',
             'origin' => 'required|string',
             'destination' => 'sometimes|nullable|string',
-            'persons' => 'required|integer',
+            'persons' => '',
             'hotel' => 'sometimes|nullable|string',
             'coach' => 'sometimes|nullable|string',
             'shuttle' => 'sometimes|nullable|string',
@@ -69,6 +69,14 @@ class UserBookingController extends Controller
         $cities = Booking::CITIES;
 
         return view('user.edit-booking', compact('bookings', 'services', 'cities'));
+    }
+    public function create()
+    {
+        $bookings = Booking::where('user_id', auth()->user()->id)->get();
+        $services = Service::all();
+
+        $cities = Booking::CITIES;
+        return view('user.create-booking', compact('bookings', 'services', 'cities'));
     }
 
     public function update(Request $request, int $booking)

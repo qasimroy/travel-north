@@ -33,6 +33,7 @@ $(document).ready(function () {
 
     function handleServices() {
         $('#service-details').children().addClass('d-none');
+        $('#service-details').children().children().hide();
         $('#service-details [required]').removeAttr('required');
 
         const services = {
@@ -48,6 +49,7 @@ $(document).ready(function () {
 
         const serviceDiv$ = $(`#${services[serviceName]}`);
         serviceDiv$.removeClass('d-none');
+        serviceDiv$.children().show();
         serviceDiv$.children('input').attr('required', true);
         serviceDiv$.children('select').attr('required', true);
     }
