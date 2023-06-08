@@ -12,8 +12,7 @@ $(document).ready(function () {
 
         serviceProviderSelect.empty();
         serviceProviderSelect.append(
-            `<option ${
-                !oldValue ? 'selected' : ''
+            `<option ${!oldValue ? 'selected' : ''
             } disabled>Select Service Provider</option>`
         );
 
@@ -23,8 +22,7 @@ $(document).ready(function () {
             success: serviceProviders => {
                 $.each(serviceProviders, function (_, { id, name }) {
                     serviceProviderSelect.append(
-                        `<option value="${id}" ${
-                            oldValue === id ? 'selected' : ''
+                        `<option value="${id}" ${oldValue === id ? 'selected' : ''
                         }>${name}</option>`
                     );
                 });

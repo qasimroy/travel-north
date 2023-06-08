@@ -149,8 +149,7 @@
                                             </x-form-select>
                                         </div>
                                         <div class="col-md-6">
-                                            <x-form-input name="persons" label="Persons" type="number" required
-                                                autofocus />
+                                            <x-form-input name="persons" label="Persons" type="number" required autofocus />
                                         </div>
                                         <div class="col-md-6">
                                             <x-form-select label="Shuttle" name="shuttle" placeholder="Select Shuttle">
