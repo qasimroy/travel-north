@@ -52,17 +52,17 @@
                     </div>
                     <div class="col-md-6">
                         <x-form-select label="Hotel" name="hotel" placeholder="Select Hotel">
-                            <option value="1">1 star</option>
-                            <option value="2">2 star</option>
-                            <option value="3">3 star</option>
-                            <option value="4">4 star</option>
-                            <option value="5">5 star</option>
+                            <option value="1 star">1 star</option>
+                            <option value="2 star">2 star</option>
+                            <option value="3 star">3 star</option>
+                            <option value="4 star">4 star</option>
+                            <option value="5 star">5 star</option>
                         </x-form-select>
                     </div>
                     <div class="col-md-6">
                         <x-form-select label="Shuttle" name="shuttle" placeholder="Select Shuttle">
-                            <option value="1">Car</option>
-                            <option value="2">Bike</option>
+                            <option value="Car">Car</option>
+                            <option value="Bike">Bike</option>
                         </x-form-select>
                     </div>
                     <div class="col-md-6">
@@ -138,8 +138,8 @@
                         </div>
                         <div class="col-md-6">
                             <x-form-select label="Shuttle" name="shuttle" placeholder="Select Shuttle">
-                                <option value="car">Car</option>
-                                <option value="bike">Bike</option>
+                                <option value="Car">Car</option>
+                                <option value="Bike">Bike</option>
                             </x-form-select>
                         </div>
                     </div>
