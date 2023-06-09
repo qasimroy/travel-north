@@ -38,4 +38,9 @@ class ServiceProviderBookingController extends Controller
 
         return redirect()->back();
     }
+    public function show(Request $request, int $id)
+    {
+        $booking = Booking::find($id);
+        return view('service-provider.show-booking', compact('booking'));
+    }
 }
