@@ -31,7 +31,7 @@ class UserBookingController extends Controller
             'service_provider_id' => 'required|exists:users,id',
             'origin' => 'required|string',
             'destination' => 'sometimes|nullable|string',
-            'persons' => '',
+            'persons' => 'required|integer',
             'hotel' => 'sometimes|nullable|string',
             'coach' => 'sometimes|nullable|string',
             'shuttle' => 'sometimes|nullable|string',
