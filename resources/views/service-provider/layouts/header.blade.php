@@ -4,16 +4,16 @@
   <!-- Sidebar -->
   <div class="bg-white" id="sidebar-wrapper">
       <div class="list-group list-group-flush my-3">
-          <a href="{{ url('/home') }}" class="list-group-item list-group-item-action bg-transparent second-text active">
+          <a href="{{ url('/service-providers/home') }}" class="list-group-item list-group-item-action bg-transparent second-text active">
             <i class="fas fa-tachometer-alt me-2"></i>Dashboard
           </a>
-          <a href="{{ url('/bookings') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+          <a href="{{ url('/service-provider/bookings') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
             <i class="fas fa-book me-2"></i>Bookings
           </a>
-          <a href="{{ url('/services') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+          <a href="{{ url('/service-provider/services') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
             <i class="fas fa-wrench me-2"></i>Services
           </a>
-          <a href="{{ url('/profile') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+          <a href="{{ url('/service-provider/profile') }}" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
             <i class="fas fa-user me-2"></i>Profile
           </a>
       </div>
