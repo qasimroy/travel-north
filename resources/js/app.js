@@ -102,33 +102,22 @@ $(document).ready(function () {
     }
 
 
-    // Function to calculate the distance
-    // Function to calculate the distance between origin and destination using Google Maps Distance Matrix API
     function calculateDistance() {
-        var origin = $('#from').val(); // Get the selected origin value
-        var destination = $('#to').val(); // Get the selected destination value
+        var origin = $('#from').val();
+        var destination = $('#to').val();
 
-        // Make an API request to calculate the distance
-        // Replace 'YOUR_API_KEY' with your actual Google Maps API key
-        var apiUrl = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + origin + '&destinations=' + destination + '&key=AIzaSyBJvmOY0QPIikdLp2vwz_p5MRMqchp3WBc';
-
-        return new Promise(function (resolve, reject) {
-            $.ajax({
-                url: apiUrl,
-                method: 'GET',
-                success: function (response) {
-                    // Parse the response and extract the distance value
-                    var distance = response.rows[0].elements[0].distance.value;
-
-                    // Convert the distance to kilometers (assuming the API returns distance in meters)
-                    var distanceInKm = distance / 1000;
-
-                    resolve(distanceInKm);
-                },
-                error: function (error) {
-                    reject(error);
-                }
-            });
+        // Make the AJAX request to your Laravel server
+        $.ajax({
+            url: '/api/proxy/maps-api',
+            method: 'GET',
+            data: { origins: origin, destinations: destination },
+            success: function (response) {
+                var distance = response.rows[0].elements[0].distance.text;
+                $('#distance').val(distance);
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            }
         });
     }
 
@@ -138,4 +127,46 @@ $(document).ready(function () {
         calculatePrice();
     });
 });
+document.addEventListener('DOMContentLoaded', function () {
+    var originInput = document.getElementById('origin');
+    var autocompleteResults = document.getElementById('autocomplete-results');
 
+    originInput.addEventListener('input', function () {
+        var query = originInput.value;
+
+        if (query.trim() !== '') {
+            var url = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(query);
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    autocompleteResults.innerHTML = '';
+
+                    if (data.length > 0) {
+                        var ul = document.createElement('ul');
+                        data.forEach(function (item) {
+                            var li = document.createElement('li');
+                            li.textContent = item.display_name;
+                            li.addEventListener('click', function () {
+                                originInput.value = item.display_name;
+                                autocompleteResults.innerHTML = '';
+                            });
+                            ul.appendChild(li);
+                        });
+                        autocompleteResults.appendChild(ul);
+                    }
+                })
+                .catch(error => {
+                    console.error('Autocomplete search error:', error);
+                    autocompleteResults.innerHTML = '';
+                });
+        } else {
+            autocompleteResults.innerHTML = '';
+        }
+    });
+
+    document.addEventListener('click', function (event) {
+        if (!originInput.contains(event.target)) {
+            autocompleteResults.innerHTML = '';
+        }
+    });
+});

@@ -152,3 +152,28 @@
       margin-left: -15rem;
     }
   }
+
+
+  #autocomplete-results {
+    position: absolute;
+    z-index: 1;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#autocomplete-results ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#autocomplete-results li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+#autocomplete-results li:hover {
+    background-color: #e5e5e5;
+}

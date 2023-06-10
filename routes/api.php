@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MapsProxyController;
 use App\Http\Controllers\UserBookingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('service-providers/{service_id}', [UserBookingController::class, 'getServiceProviders']);
+
+Route::get('/proxy/maps-api', [MapsProxyController::class, 'proxyRequest'])->name('proxy.maps-api');
