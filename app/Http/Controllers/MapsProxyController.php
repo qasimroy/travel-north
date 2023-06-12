@@ -23,7 +23,7 @@ class MapsProxyController extends Controller
                 $destinationCoordinates['lng']
             );
 
-            return response()->json(['distance' => $distance]);
+            return response()->json(['distance' => $distance, 'unit' => 'km']);
         }
 
         // Handle the case when coordinates are not available
@@ -66,7 +66,9 @@ class MapsProxyController extends Controller
         $data = json_decode($response->getBody(), true);
 
         if (!empty($data['routes'][0]['distance'])) {
-            return $data['routes'][0]['distance'];
+            $distanceInMeters = $data['routes'][0]['distance'];
+            $distanceInKilometers = $distanceInMeters / 1000;
+            return $distanceInKilometers;
         }
 
         return null;

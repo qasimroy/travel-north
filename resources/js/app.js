@@ -16,6 +16,8 @@ $(document).ready(function () {
             } disabled>Select Service Provider</option>`
         );
 
+
+
         $.ajax({
             url: `/api/service-providers/${serviceId}`,
             method: 'GET',
@@ -47,6 +49,14 @@ $(document).ready(function () {
 
         populateServiceProviders(serviceId);
 
+        var destinationField = $('#destination-field');
+        if (serviceName === 'Tour(Tour Includes all services)' || serviceName === 'Coach') {
+            destinationField.removeClass('d-none');
+        } else {
+            destinationField.addClass('d-none');
+        }
+
+
         const serviceDiv$ = $(`#${services[serviceName]}`);
         serviceDiv$.removeClass('d-none');
         serviceDiv$.children().show();
@@ -68,7 +78,59 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
+
+document.addEventListener('DOMContentLoaded', function () {
+    var originInput = document.getElementById('from');
+    var destinationInput = document.getElementById('to');
+    var autocompleteResults = document.getElementById('autocomplete-results');
+
+    function autocompleteSearch(inputElement) {
+        var query = inputElement.value;
+
+        if (query.trim() !== '') {
+            var url = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(query);
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    autocompleteResults.innerHTML = '';
+
+                    if (data.length > 0) {
+                        var ul = document.createElement('ul');
+                        data.forEach(function (item) {
+                            var li = document.createElement('li');
+                            li.textContent = item.display_name;
+                            li.addEventListener('click', function () {
+                                inputElement.value = item.display_name;
+                                autocompleteResults.innerHTML = '';
+                            });
+                            ul.appendChild(li);
+                        });
+                        autocompleteResults.appendChild(ul);
+                    }
+                })
+                .catch(error => {
+                    console.error('Autocomplete search error:', error);
+                    autocompleteResults.innerHTML = '';
+                });
+        } else {
+            autocompleteResults.innerHTML = '';
+        }
+    }
+
+    originInput.addEventListener('input', function () {
+        autocompleteSearch(originInput);
+    });
+
+    destinationInput.addEventListener('input', function () {
+        autocompleteSearch(destinationInput);
+    });
+
+    document.addEventListener('click', function (event) {
+        if (!originInput.contains(event.target) && !destinationInput.contains(event.target)) {
+            autocompleteResults.innerHTML = '';
+        }
+    });
+
     // Function to calculate the price
     function calculatePrice() {
         var startDate = $('#start').val();
@@ -76,12 +138,19 @@ $(document).ready(function () {
         var days = calculateDays(startDate, endDate); // Call your function to calculate the number of days
         var servicePrice = parseFloat($('#service_id option:selected').data('price'));
         var distance = calculateDistance(); // Call your function to calculate the distance
-        var specificNumber = 1; // Replace with your specific number
+        var specificNumber = 10; // Replace with your specific number
         var persons = parseInt($('#persons').val());
+        console.log(persons);
+        console.log(parseFloat($('#service_id option:selected').data('price'))); // NAN in console
 
+        console.log(servicePrice); //  NAN in console.
         // Perform the calculation
         var totalPrice = (servicePrice + (distance * specificNumber)) * days * persons;
-        console.log(totalPrice);
+        // console.log(totalPrice);
+        console.log(distance);  // undefined in console.
+        console.log(specificNumber);
+        console.log(days);
+
 
         // Update the price input field with the calculated value
         $('#price-input').val(totalPrice.toFixed());
@@ -98,9 +167,9 @@ $(document).ready(function () {
         // Calculate the number of days
         var days = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
+
         return days;
     }
-
 
     function calculateDistance() {
         var origin = $('#from').val();
@@ -110,9 +179,9 @@ $(document).ready(function () {
         $.ajax({
             url: '/api/proxy/maps-api',
             method: 'GET',
-            data: { origins: origin, destinations: destination },
+            data: { origin: origin, destination: destination },
             success: function (response) {
-                var distance = response.rows[0].elements[0].distance.text;
+                var distance = response.distance;
                 $('#distance').val(distance);
             },
             error: function (xhr, status, error) {
@@ -121,52 +190,8 @@ $(document).ready(function () {
         });
     }
 
-
     // Event listener for form field changes
     $('#calculate-price').on('click', () => {
         calculatePrice();
-    });
-});
-document.addEventListener('DOMContentLoaded', function () {
-    var originInput = document.getElementById('origin');
-    var autocompleteResults = document.getElementById('autocomplete-results');
-
-    originInput.addEventListener('input', function () {
-        var query = originInput.value;
-
-        if (query.trim() !== '') {
-            var url = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(query);
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    autocompleteResults.innerHTML = '';
-
-                    if (data.length > 0) {
-                        var ul = document.createElement('ul');
-                        data.forEach(function (item) {
-                            var li = document.createElement('li');
-                            li.textContent = item.display_name;
-                            li.addEventListener('click', function () {
-                                originInput.value = item.display_name;
-                                autocompleteResults.innerHTML = '';
-                            });
-                            ul.appendChild(li);
-                        });
-                        autocompleteResults.appendChild(ul);
-                    }
-                })
-                .catch(error => {
-                    console.error('Autocomplete search error:', error);
-                    autocompleteResults.innerHTML = '';
-                });
-        } else {
-            autocompleteResults.innerHTML = '';
-        }
-    });
-
-    document.addEventListener('click', function (event) {
-        if (!originInput.contains(event.target)) {
-            autocompleteResults.innerHTML = '';
-        }
     });
 });

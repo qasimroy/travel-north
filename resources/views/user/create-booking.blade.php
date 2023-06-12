@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@include('service-provider.layouts.header')
+@include('user.layouts.header')
 <h2 class="fs-2 m-0">Create Booking</h2>
 </div>
 </nav>
@@ -31,19 +31,17 @@
             </div>
             <div class="col-md-12">
                 <label for="origin">Origin</label>
-                <input type="text" id="origin" name="origin" class="form-control" placeholder="Enter your origin" required>
+                <input type="text" id="from" name="origin" class="form-control" placeholder="Enter your origin" required>
+                <div id="autocomplete-results"></div>
+            </div>
+            <div class="col-md-12 " id="destination-field">
+                <label for="destination">Destination</label>
+                <input type="text" id="to" name="destination" class="form-control" placeholder="Enter your Destination" required>
                 <div id="autocomplete-results"></div>
             </div>
             <div class="col-12" id="service-details">
                 <div class="d-none row" id="tour">
-                    <div class="col-md-6">
-                        <x-form-select label="Destination" name="destination" id="to" placeholder="Select Your Destination"
-                            required>
-                            @foreach($cities as $city)
-                            <option value="{{ $city }}">{{ $city }}</option>
-                            @endforeach
-                        </x-form-select>
-                    </div>
+                    
                     <div class="col-md-6">
                         <x-form-select label="Hotel" name="hotel" placeholder="Select Hotel">
                             <option value="1 star">1 star</option>
@@ -68,14 +66,6 @@
                     </div>
                 </div>
                 <div class="d-none row" id="coach">
-                    <div class="col-md-6">
-                        <x-form-select label="Destination" name="destination" id="to" placeholder="Select Your Destination"
-                            required>
-                            @foreach($cities as $city)
-                            <option value="{{ $city }}">{{ $city }}</option>
-                            @endforeach
-                        </x-form-select>
-                    </div>
                     <div class="col-md-6">
                         <x-form-select label="Coach" name="coach" placeholder="Select Coach">
                             <option value="Toyota Hiace">Toyota Hiace</option>

@@ -44,8 +44,8 @@
         </div>
         <!-- Modals for Services -->
         @foreach ($serviceProvider as $ServiceProvider)
-        <div class="modal fade mt-5 pt-5" id="servicesModal{{ $ServiceProvider->id }}" tabindex="-1" aria-labelledby="servicesModal{{ $ServiceProvider->id }}Label" aria-hidden="true">
-            <div class="modal-dialog w-25">
+        <div class="modal fade" id="servicesModal{{ $ServiceProvider->id }}" tabindex="-1" aria-labelledby="servicesModal{{ $ServiceProvider->id }}Label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="servicesModal{{ $ServiceProvider->id }}Label">Services provided by {{ $ServiceProvider->name }}</h5>
@@ -59,7 +59,6 @@
                                     <th>Service Name</th>
                                     <th>Description</th>
                                     <th>Price</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -73,9 +72,6 @@
                                         <td>{{ $service->service->name }}</td>
                                         <td>{{ $service->description }}</td>
                                         <td>{{ $service->price }}</td>
-                                        <td>
-                                            <a href="{{ route('user.service-providers.book') }}" class="btn btn-primary">Book</a>
-                                        </td>
                                     </tr>
                                     @php
                                         $serviceCount++;
