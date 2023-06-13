@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const totalPrice =
             (servicePrice + distance * specificNumber) * days * persons;
 
-        $('#price-input').val(`RS. ${totalPrice.toFixed()}`);
+        $('#price-input').val(totalPrice.toFixed());
     };
 
     const calculateDistance = () => {

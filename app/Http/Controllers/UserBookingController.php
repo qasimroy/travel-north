@@ -35,6 +35,7 @@ class UserBookingController extends Controller
             'hotel' => 'sometimes|nullable|string',
             'coach' => 'sometimes|nullable|string',
             'shuttle' => 'sometimes|nullable|string',
+            'price' => 'required|integer',
         ]);
 
         // Fetch the current user ID
@@ -53,7 +54,7 @@ class UserBookingController extends Controller
         $booking->hotel = $validatedData['hotel'] ?? null;
         $booking->coach = $validatedData['coach'] ?? null;
         $booking->shuttle = $validatedData['shuttle'] ?? null;
-        $booking->price = null;
+        $booking->price = $request->input('price');
         $booking->status = Booking::PENDING;
 
         // Save the booking
@@ -92,7 +93,7 @@ class UserBookingController extends Controller
         $booking->hotel = $request->input('hotel') ?? null;
         $booking->coach = $request->input('coach') ?? null;
         $booking->shuttle = $request->input('shuttle') ?? null;
-        $booking->price = null;
+        $booking->price = $request->input('price');
         $booking->status = Booking::PENDING;
         $booking->update();
 
