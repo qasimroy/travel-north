@@ -174,16 +174,20 @@ document.addEventListener('DOMContentLoaded', function () {
             '[name="service_provider_id"] option:selected'
         ).data('price');
 
+        console.log(days);
+        console.log(servicePrice);
         let distance = 0;
 
         if (serviceName.includes('Tour') || serviceName.includes('Coach')) {
             distance = await calculateDistance();
         }
+        console.log(distance);
 
         const specificNumber = 10;
         const persons = +$('#persons').val();
-        const totalPrice =
-            (servicePrice + distance * specificNumber) * days * persons;
+        const totalPrice = (servicePrice + distance * specificNumber) * days * persons;
+        console.log(persons);
+        console.log(totalPrice);
 
         $('#price-input').val(totalPrice.toFixed());
     };

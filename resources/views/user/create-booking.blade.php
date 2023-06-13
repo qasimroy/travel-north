@@ -40,7 +40,6 @@
             </div>
             <div class="col-12" id="service-details">
                 <div class="d-none row" id="tour">
-
                     <div class="col-md-6">
                         <x-form-select label="Hotel" name="hotel" placeholder="Select Hotel">
                             <option value="1 star">1 star</option>
