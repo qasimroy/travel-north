@@ -1,3 +1,19 @@
+function debounce(func, wait = 500, immediate) {
+    var timeout;
+    return function () {
+        var context = this,
+            args = arguments;
+        var later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
+    };
+}
+
 const el = document.getElementById('wrapper');
 const toggleButton = document.getElementById('menu-toggle');
 
@@ -12,24 +28,27 @@ $(document).ready(function () {
 
         serviceProviderSelect.empty();
         serviceProviderSelect.append(
-            `<option ${!oldValue ? 'selected' : ''
+            `<option ${
+                !oldValue ? 'selected' : ''
             } disabled>Select Service Provider</option>`
         );
-
-
 
         $.ajax({
             url: `/api/service-providers/${serviceId}`,
             method: 'GET',
             success: serviceProviders => {
-                $.each(serviceProviders, function (_, { id, name }) {
-                    serviceProviderSelect.append(
-                        `<option value="${id}" ${oldValue === id ? 'selected' : ''
-                        }>${name}</option>`
-                    );
-                });
+                $.each(
+                    serviceProviders,
+                    function (_, { service_provider: { id, name }, price }) {
+                        serviceProviderSelect.append(
+                            `<option value="${id}" ${
+                                oldValue === id ? 'selected' : ''
+                            } data-price="${price}">${name}</option>`
+                        );
+                    }
+                );
             },
-            error: console.log,
+            error: console.error,
         });
     }
 
@@ -50,12 +69,16 @@ $(document).ready(function () {
         populateServiceProviders(serviceId);
 
         var destinationField = $('#destination-field');
-        if (serviceName === 'Tour(Tour Includes all services)' || serviceName === 'Coach') {
+        if (
+            serviceName === 'Tour(Tour Includes all services)' ||
+            serviceName === 'Coach'
+        ) {
             destinationField.removeClass('d-none');
+            $('#destination-field').attr('required', true);
         } else {
             destinationField.addClass('d-none');
+            $('#destination-field [required]').removeAttr('required');
         }
-
 
         const serviceDiv$ = $(`#${services[serviceName]}`);
         serviceDiv$.removeClass('d-none');
@@ -78,7 +101,6 @@ $(document).ready(function () {
     });
 });
 
-
 document.addEventListener('DOMContentLoaded', function () {
     var originInput = document.getElementById('from');
     var destinationInput = document.getElementById('to');
@@ -87,8 +109,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function autocompleteSearch(inputElement) {
         var query = inputElement.value;
 
-        if (query.trim() !== '') {
-            var url = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(query);
+        if (query.trim()) {
+            var url =
+                'https://nominatim.openstreetmap.org/search?format=json&q=' +
+                encodeURIComponent(query);
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
@@ -117,81 +141,85 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    originInput.addEventListener('input', function () {
-        autocompleteSearch(originInput);
-    });
-
-    destinationInput.addEventListener('input', function () {
-        autocompleteSearch(destinationInput);
-    });
+    originInput.addEventListener(
+        'input',
+        debounce(() => autocompleteSearch(originInput))
+    );
+    destinationInput.addEventListener(
+        'input',
+        debounce(() => autocompleteSearch(destinationInput))
+    );
 
     document.addEventListener('click', function (event) {
-        if (!originInput.contains(event.target) && !destinationInput.contains(event.target)) {
+        if (
+            !originInput.contains(event.target) &&
+            !destinationInput.contains(event.target)
+        ) {
             autocompleteResults.innerHTML = '';
         }
     });
 
-    // Function to calculate the price
-    function calculatePrice() {
-        var startDate = $('#start').val();
-        var endDate = $('#end').val();
-        var days = calculateDays(startDate, endDate); // Call your function to calculate the number of days
-        var servicePrice = parseFloat($('#service_id option:selected').data('price'));
-        var distance = calculateDistance(); // Call your function to calculate the distance
-        var specificNumber = 10; // Replace with your specific number
-        var persons = parseInt($('#persons').val());
-        console.log(persons);
-        console.log(parseFloat($('#service_id option:selected').data('price'))); // NAN in console
+    const calculateDays = (startDate, endDate) => {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
 
-        console.log(servicePrice); //  NAN in console.
-        // Perform the calculation
-        var totalPrice = (servicePrice + (distance * specificNumber)) * days * persons;
-        // console.log(totalPrice);
-        console.log(distance);  // undefined in console.
-        console.log(specificNumber);
-        console.log(days);
+        const timeDiff = end.getTime() - start.getTime();
+        return Math.ceil(timeDiff / (1000 * 3600 * 24));
+    };
 
+    const calculatePrice = async () => {
+        const startDate = $('#start').val();
+        const endDate = $('#end').val();
+        const serviceName = $('#service_id option:selected').text();
+        const days = calculateDays(startDate, endDate);
+        const servicePrice = +$(
+            '[name="service_provider_id"] option:selected'
+        ).data('price');
 
-        // Update the price input field with the calculated value
-        $('#price-input').val(totalPrice.toFixed());
-    }
+        let distance = 0;
 
-    // Function to calculate the number of days between start and end dates
-    function calculateDays(startDate, endDate) {
-        var start = new Date(startDate);
-        var end = new Date(endDate);
+        if (serviceName.includes('Tour') || serviceName.includes('Coach')) {
+            distance = await calculateDistance();
+        }
 
-        // Calculate the difference in milliseconds between the two dates
-        var timeDiff = end.getTime() - start.getTime();
+        const specificNumber = 10;
+        const persons = +$('#persons').val();
+        const totalPrice =
+            (servicePrice + distance * specificNumber) * days * persons;
 
-        // Calculate the number of days
-        var days = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        $('#price-input').val(`RS. ${totalPrice.toFixed()}`);
+    };
 
+    const calculateDistance = () => {
+        let resolve;
 
-        return days;
-    }
+        const promise = new Promise(res => {
+            resolve = res;
+        });
 
-    function calculateDistance() {
         var origin = $('#from').val();
         var destination = $('#to').val();
 
-        // Make the AJAX request to your Laravel server
         $.ajax({
             url: '/api/proxy/maps-api',
             method: 'GET',
-            data: { origin: origin, destination: destination },
-            success: function (response) {
-                var distance = response.distance;
-                $('#distance').val(distance);
+            data: { origin, destination },
+            success: function ({ distance }) {
+                resolve(distance);
             },
-            error: function (xhr, status, error) {
-                console.log(error);
-            }
+            error: console.error,
         });
-    }
 
-    // Event listener for form field changes
+        return promise;
+    };
+
     $('#calculate-price').on('click', () => {
+        const form$ = $('#booking-form')[0];
+
+        if (!form$.checkValidity()) {
+            return form$.reportValidity();
+        }
+
         calculatePrice();
     });
 });
