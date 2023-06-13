@@ -131,13 +131,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Function to calculate the price
     function calculatePrice() {
         var startDate = $('#start').val();
         var endDate = $('#end').val();
-        var days = calculateDays(startDate, endDate); // Call your function to calculate the number of days
+        var days = calculateDays(startDate, endDate);
         var servicePrice = parseFloat($('#service_id option:selected').data('price'));
-        var distance = calculateDistance(); // Call your function to calculate the distance
+        var distance = calculateDistance();
         var specificNumber = 10; // Replace with your specific number
         var persons = parseInt($('#persons').val());
         console.log(persons);
@@ -183,6 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
             success: function (response) {
                 var distance = response.distance;
                 $('#distance').val(distance);
+                console.log(distance);
             },
             error: function (xhr, status, error) {
                 console.log(error);
