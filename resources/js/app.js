@@ -173,19 +173,20 @@ document.addEventListener('DOMContentLoaded', function () {
         const servicePrice = +$(
             '[name="service_provider_id"] option:selected'
         ).data('price');
-
+        let distance;
         console.log(days);
         console.log(servicePrice);
-        let distance = 0;
 
         if (serviceName.includes('Tour') || serviceName.includes('Coach')) {
             distance = await calculateDistance();
         }
+        else {
+            distance = 12;
+        }
         console.log(distance);
 
-        const specificNumber = 10;
         const persons = +$('#persons').val();
-        const totalPrice = (servicePrice + distance * specificNumber) * days * persons;
+        const totalPrice = (servicePrice + (distance / 2)) * days * (persons / 2);
         console.log(persons);
         console.log(totalPrice);
 
@@ -208,6 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
             data: { origin, destination },
             success: function ({ distance }) {
                 resolve(distance);
+                console.log(distance);
             },
             error: console.error,
         });

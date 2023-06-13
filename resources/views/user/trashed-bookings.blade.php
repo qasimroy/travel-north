@@ -8,13 +8,10 @@
 
 
 <div class="container-fluid px-4">
-    <div class="row float-end my-2">
+    <div class="row float-end py-2">
         <div class="">
-            <a href="{{ route('user.bookings.create') }}">
-                <button class="btn text-white cta" type="button" > Add <i class="fas fa-plus"></i></button>
-            </a>
-            <a href="{{ route('user.bookings.trash') }}">
-                <button class="btn text-white btn-danger" type="button" >Trash <i class="fas fa-trash-alt"></i></button>
+            <a href="{{ route('user.bookings') }}">
+                <button class="btn text-white cta" type="button" >Bookings <i class="fas fa-book"></i></button>
             </a>
         </div>
     </div>
@@ -49,13 +46,13 @@
                 <td>{{ $booking->price }}</td>
                 <td>{{ $booking->status }}</td>
                 <td>
-                    <a href="{{ route('user.bookings.edit', $booking->id) }}"><button
-                            class="btn btn-primary text-white">Edit <i class="fas fa-edit"></i></button></a>
-                    <form action="{{ route('user.bookings.destroy', $booking->id) }}" method="POST"
+                    <a href="{{ route('user.bookings.restore', $booking->id) }}"><button
+                            class="btn btn-primary text-white">Restore <i class="fas fa-trash-restore"></i></button></a>
+                    <form action="{{ route('user.bookings.trash.delete', $booking->id) }}" method="POST"
                         style="display: inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Trash <i class="fas fa-trash-alt"></i></button>
+                        <button type="submit" class="btn btn-danger">Delete <i class="fas fa-trash"></i></button>
                     </form>
                 </td>
             </tr>

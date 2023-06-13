@@ -51,7 +51,10 @@ Route::get('/services', [ServiceController::class, 'index'])->name('services');
 Route::group(['middleware' => ['restrict.user']], function () {
     Route::get('/user/home', [UserHomeController::class, 'index'])->name('user.home');
     Route::get('/user/bookings', [UserBookingController::class, 'index'])->name('user.bookings');
-    Route::get('/user/bookings/create-bookings', [UserBookingController::class, 'create'])->name('user.bookings.create');
+    Route::get('/user/bookings/create', [UserBookingController::class, 'create'])->name('user.bookings.create');
+    Route::get('/user/bookings/trash', [UserBookingController::class, 'trash'])->name('user.bookings.trash');
+    Route::delete('/user/bookings/trash/delete/{id}', [UserBookingController::class, 'forceDelete'])->name('user.bookings.trash.delete');
+    Route::get('/user/bookings/restore/{id}', [UserBookingController::class, 'restore'])->name('user.bookings.restore');
     Route::post('/user/bookings', [UserBookingController::class, 'store'])->name('user.bookings.store');
     Route::get('/user/bookings/{bookings}/edit', [UserBookingController::class, 'edit'])->name('user.bookings.edit');
     Route::post('/user/bookings/{bookings}', [UserBookingController::class, 'update'])->name('user.bookings.update');

@@ -80,6 +80,8 @@ class UserBookingController extends Controller
         return view('user.create-booking', compact('bookings', 'services', 'cities'));
     }
 
+
+
     public function update(Request $request, int $booking)
     {
         $booking = Booking::find($booking);
@@ -103,7 +105,31 @@ class UserBookingController extends Controller
     public function destroy(int $booking)
     {
         Booking::find($booking)->delete();
-        return redirect()->route('user.bookings')->with('success', 'Booking deleted successfully.');
+        return redirect()->route('user.bookings')->with('success', 'Booking trashed successfully.');
+    }
+
+    public function trash()
+    {
+        $bookings = Booking::onlyTrashed()->get();
+        return view('user.trashed-bookings', compact('bookings'));
+    }
+
+    public function forceDelete($id)
+    {
+        $bookings = Booking::withTrashed()->find($id);
+        if (!is_null($bookings)) {
+            $bookings->forceDelete();
+        }
+        return redirect()->route('user.bookings.trash')->with('success', 'Booking deleted successfully.');
+    }
+
+    public function restore($id)
+    {
+        $bookings = Booking::withTrashed()->find($id);
+        if (!is_null($bookings)) {
+            $bookings->restore();
+        }
+        return redirect()->route('user.bookings.trash');
     }
 
 

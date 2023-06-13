@@ -4,21 +4,20 @@
         <h2 class="fs-2 m-0">Edit Booking</h2>
     </div>
 </nav>
+
 <div class="container d-flex justify-content-center">
     <div class="w-50 p-5 bg-white rounded">
-        <form class="row g-3 text-dark" method="POST" 
-            action="{{ route('user.bookings.update', ['bookings' => $bookings]) }}"  id="booking-form">
+        <form class="row g-3 text-dark" method="POST"
+            action="{{ route('user.bookings.update', ['bookings' => $bookings]) }}" id="booking-form">
             @csrf
             <div class="col-md-6">
-                <x-form-input name="startDate" label="Start" type="date" value="{{ $bookings->start_date }}" required
-                    autofocus />
+                <x-form-input name="startDate" label="Start" type="date" id="start" value="{{ $bookings->start_date }}" required autofocus />
             </div>
             <div class="col-md-6">
-                <x-form-input name="endDate" label="End" type="date" value="{{ $bookings->end_date }}" required
-                    autofocus />
+                <x-form-input name="endDate" label="End" type="date" id="end" value="{{ $bookings->end_date }}" required autofocus />
             </div>
             <div class="col-12">
-                <x-form-select label="Service" name="service_id" placeholder="" required>
+                <x-form-select label="Service" name="service_id" placeholder="" id="service_id" required>
                     @foreach ($services as $service)
                     <option value="{{ $service->id }}">{{ $service->name }}</option>
                     @endforeach
@@ -76,7 +75,7 @@
                     </div>
                 </div>
                 <div class="d-none row" id="hotel">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <x-form-select label="Hotel" name="hotel" placeholder="Select Hotel">
                             <option value="1 star">1 star</option>
                             <option value="2 star">2 star</option>
@@ -88,7 +87,7 @@
                 </div>
                 <div class="d-none row" id="shuttle">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <x-form-select label="Shuttle" name="shuttle" placeholder="Select Shuttle">
                                 <option value="Car">Car</option>
                                 <option value="Bike">Bike</option>
@@ -98,8 +97,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <x-form-input name="persons" label="Persons" type="number" value="{{ $bookings->person }}"
-                    required />
+                <x-form-input name="persons" label="Persons" type="number" value="{{ $bookings->person }}" id="persons" required />
             </div>
             <div class="col-md-6">
                 <x-form-input name="price" label="Price" id="price-input" value="{{ $bookings->price }}" readonly required />
@@ -108,7 +106,7 @@
                 <input type="button" value="Calculate Price" class="btn btn-info" id="calculate-price">
             </div>
             <div class="col-12">
-                <x-form-submit>Update</x-form-submit>
+                <x-form-submit class=" text-white">Update</x-form-submit>
             </div>
         </form>
     </div>
