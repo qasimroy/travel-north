@@ -59,6 +59,7 @@
                     </div>
                     <div class="col-md-6">
                         <x-form-select label="Coach" name="coach" placeholder="Select Coach">
+                            <option value="Changan Caravan">Changan Caravan</option>
                             <option value="Toyota Hiace">Toyota Hiace</option>
                             <option value="Toyota Coaster">Toyota Coaster</option>
                             <option value="Daewoo">Daewoo</option>
@@ -68,6 +69,7 @@
                 <div class="d-none row" id="coach">
                     <div class="col-md-6">
                         <x-form-select label="Coach" name="coach" placeholder="Select Coach">
+                            <option value="Changan Caravan">Changan Caravan</option>
                             <option value="Toyota Hiace">Toyota Hiace</option>
                             <option value="Toyota Coaster">Toyota Coaster</option>
                             <option value="Daewoo">Daewoo</option>
