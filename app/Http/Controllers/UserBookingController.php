@@ -3,22 +3,30 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Service;
 use App\Models\ServiceProviderServices;
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 
 class UserBookingController extends Controller
 {
     public function index()
     {
-        $bookings = Booking::where('user_id', auth()->user()->id)->get();
+        $bookings = Booking::where('user_id', auth()->user()->id)->paginate(5);
         $services = Service::all();
+        $serviceProviderIds = $bookings->pluck('service_provider_id')->toArray();
+        $serviceProviders = User::whereIn('id', $serviceProviderIds)->get();
 
-        $cities = Booking::CITIES;
-
-        return view('user.bookings', compact('services', 'bookings', 'cities'));
+        foreach ($bookings as $booking) {
+            if ($booking->status === 'accepted') {
+                $serviceProvider = $serviceProviders->firstWhere('id', $booking->service_provider_id);
+                $booking->serviceProvider = $serviceProvider;
+            }
+        }
+        return view('user.bookings', compact('services', 'bookings'));
     }
 
     public function store(Request $request)

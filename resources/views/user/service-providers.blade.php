@@ -12,7 +12,6 @@
                         <th>Sr No.</th>
                         <th>Company Name</th>
                         <th>Email</th>
-                        <th>Phone no</th>
                         <th>Address</th>
                     </tr>
                 </thead>
@@ -25,7 +24,6 @@
                             <td>{{{ $count }}}</td>
                             <td>{{ $ServiceProvider->name }}</td>
                             <td>{{ $ServiceProvider->email }}</td>
-                            <td>{{ $ServiceProvider->phone }}</td>
                             <td>{{ $ServiceProvider->address }}</td>
                             <td>
                                 <button class="btn btn-success"data-bs-toggle="modal" data-bs-target="#servicesModal{{ $ServiceProvider->id }}">Show Services</button>

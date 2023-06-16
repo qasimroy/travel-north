@@ -49,6 +49,31 @@
                 <td>{{ $booking->price }}</td>
                 <td>{{ $booking->status }}</td>
                 <td>
+                    @if ($booking->status === 'accepted')
+                        <button type="button" class="btn cta text-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ $booking->serviceProvider->id }}">
+                            Provider
+                        </button>
+
+                        <div class="modal fade" id="staticBackdrop{{ $booking->serviceProvider->id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdrop{{ $booking->serviceProvider->id }}Label" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdrop{{ $booking->serviceProvider->id }}Label">Service Provider Details</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <x-form-input name="name" label="Company Name" value="{{ $booking->serviceProvider->name }}" type="text" readonly autofocus />
+                                        <x-form-input name="address" label="Address" value="{{ $booking->serviceProvider->address }}" type="text" readonly autofocus />
+                                        <x-form-input name="phone" label="Contact Number" value="{{ $booking->serviceProvider->phone }}" type="text" readonly autofocus />
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                     <a href="{{ route('user.bookings.edit', $booking->id) }}"><button
                             class="btn btn-primary text-white">Edit <i class="fas fa-edit"></i></button></a>
                     <form action="{{ route('user.bookings.destroy', $booking->id) }}" method="POST"
@@ -66,7 +91,7 @@
         </tbody>
     </table>
     <div class="pagination justify-content-center custom-pagination">
-        {{-- {{ $user->links('pagination::bootstrap-4') }} --}}
+        {{ $bookings->links('pagination::bootstrap-4') }}
     </div>
 
 </div>

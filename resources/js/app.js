@@ -21,6 +21,8 @@ toggleButton.onclick = function () {
     el.classList.toggle('toggled');
 };
 
+
+
 $(document).ready(function () {
     function populateServiceProviders(serviceId) {
         const serviceProviderSelect = $('select[name="service_provider_id"]');
