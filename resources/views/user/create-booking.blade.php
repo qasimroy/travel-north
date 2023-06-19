@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('content')
 @include('user.layouts.header')
-<h2 class="fs-2 m-0">Create Booking</h2>
-</div>
+        <h2 class="fs-2 m-0">Create Booking</h2>
+    </div>
 </nav>
 <div class="container d-flex justify-content-center">
     <div class="w-50 p-5 bg-white rounded">
