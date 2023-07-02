@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-9 col-lg-6">
             <div class="card">
-                <div class="card-header primary-bg"><b>Register</b></div>
+                <div class="card-header text-white primary-bg"><b>Register</b></div>
                 
                 <div class="card-body ">
                     <x-form :action="route('register')">
