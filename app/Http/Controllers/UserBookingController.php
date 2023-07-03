@@ -31,7 +31,6 @@ class UserBookingController extends Controller
 
     public function store(Request $request)
     {
-        // Validate the request data
         $validatedData = $request->validate([
             'startDate' => 'required|date_format:Y-m-d',
             'endDate' => 'required|date_format:Y-m-d',
@@ -46,10 +45,8 @@ class UserBookingController extends Controller
             'price' => 'required|integer',
         ]);
 
-        // Fetch the current user ID
         $user_id = Auth::id();
 
-        // Create a new booking instance and set its attributes
         $booking = new Booking();
         $booking->user_id = $user_id;
         $booking->start_date = Carbon::createFromFormat("Y-m-d", $validatedData['startDate'])->toDateTimeString();
@@ -65,10 +62,8 @@ class UserBookingController extends Controller
         $booking->price = $request->input('price');
         $booking->status = Booking::PENDING;
 
-        // Save the booking
         $booking->save();
 
-        // Redirect to the bookings index page or show a success message
         return redirect()->route('user.bookings')->with('success', 'Booking created successfully.');
     }
     public function edit(Booking $bookings)
