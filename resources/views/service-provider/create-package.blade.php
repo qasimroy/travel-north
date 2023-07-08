@@ -1,7 +1,8 @@
 @extends('layouts.app')
+
 @section('content')
-    @include('user.layouts.header')
-    <h2 class="fs-2 m-0">Create Booking</h2>
+    @include('service-provider.layouts.header')
+    <h2 class="fs-2 m-0">Create Package</h2>
     </div>
     </nav>
     <div class="container d-flex justify-content-center">
@@ -17,26 +18,19 @@
                 <div class="col-12">
                     <x-form-select label="Service" name="service_id" placeholder="" id="service_id" required>
                         @foreach ($services as $service)
-                            <option value="{{ $service->id }}">{{ $service->name }}</option>
+                            <option value="{{ $service->service->id }}">{{ $service->service->name }}</option>
                         @endforeach
-                    </x-form-select>
-                </div>
-                <div class="col-12">
-                    <x-form-select label="Service Provider" name="service_provider_id"
-                        placeholder="Select Service Providers" required>
                     </x-form-select>
                 </div>
                 <div class="col-md-12">
                     <label for="origin">Origin</label>
                     <input type="text" id="from" name="origin" class="form-control" placeholder="Enter your origin"
                         required>
-                    <div id="autocomplete-results"></div>
                 </div>
                 <div class="col-md-12 " id="destination-field">
                     <label for="destination">Destination</label>
                     <input type="text" id="to" name="destination" class="form-control"
                         placeholder="Enter your Destination" required>
-                    <div id="autocomplete-results"></div>
                 </div>
                 <div class="col-12" id="service-details">
                     <div class="d-none row" id="tour">
@@ -111,7 +105,12 @@
             </form>
         </div>
     </div>
+
+
+
     </div>
     <!-- /#page-content-wrapper -->
     </div>
+    <!-- here -->
+    @include('service-provider.layouts.footer')
 @endsection
