@@ -7,5 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Package extends Model
 {
+
+    const OPEN = 'Open';
+    const CLOSED = 'Closed';
     use HasFactory;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'service_provider_id');
+    }
+    
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'service_id');
+    }
 }

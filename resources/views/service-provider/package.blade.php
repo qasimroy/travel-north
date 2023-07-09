@@ -8,7 +8,7 @@
     <div class="container-fluid px-4">
         <div class="row float-end">
             <div class="">
-                <a href="{{-- route('service-provider.package.create') --}}">
+                <a href="{{ route('service-provider.package.create') }}">
                     <button class="btn text-white cta" type="button"> Create <i class="fas fa-plus"></i></button>
                 </a>
             </div>

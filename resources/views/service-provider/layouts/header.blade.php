@@ -1,6 +1,6 @@
 <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
-    <div class="bg-white" id="sidebar-wrapper">
+    <div class="bg-white rounded-end" id="sidebar-wrapper">
         <div class="list-group list-group-flush my-3">
             <a href="{{ url('/service-providers/home') }}"
                 class="list-group-item list-group-item-action bg-transparent second-text active">

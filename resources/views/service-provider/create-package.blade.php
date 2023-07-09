@@ -5,15 +5,24 @@
     <h2 class="fs-2 m-0">Create Package</h2>
     </div>
     </nav>
+    <div class="ms-3">
+        <div class="row float-start">
+            <a href="{{ route('service-provider.package') }}">
+                <button class="btn text-white cta rounded-circle" type="button"><i class="fas fa-arrow-left"></i></button>
+            </a>
+        </div>
+    </div>
     <div class="container d-flex justify-content-center">
         <div class="w-50 p-5 bg-white rounded">
-            <form class="row g-3 text-dark" method="POST" action="{{ route('user.bookings.store') }}" id="booking-form">
+            <form class="row g-3 text-dark" method="POST" action="{{-- route('user.bookings.store') --}}" id="booking-form"
+                enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-6">
-                    <x-form-input name="startDate" label="Start" type="date" id="start" required autofocus />
+                    <x-form-input name="startDate" label="Start Date" type="date" min="{{ date('Y-m-d') }}" required
+                        autofocus />
                 </div>
                 <div class="col-md-6">
-                    <x-form-input name="endDate" label="End" type="date" id="end" required autofocus />
+                    <x-form-input name="days" label="Days" type="number" required autofocus />
                 </div>
                 <div class="col-12">
                     <x-form-select label="Service" name="service_id" placeholder="" id="service_id" required>
@@ -22,15 +31,14 @@
                         @endforeach
                     </x-form-select>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <label for="origin">Origin</label>
-                    <input type="text" id="from" name="origin" class="form-control" placeholder="Enter your origin"
-                        required>
+                    <input type="text" name="origin" class="form-control" placeholder="Enter your origin" required>
                 </div>
-                <div class="col-md-12 " id="destination-field">
+                <div class="col-md-6" id="destination-field">
                     <label for="destination">Destination</label>
-                    <input type="text" id="to" name="destination" class="form-control"
-                        placeholder="Enter your Destination" required>
+                    <input type="text" name="destination" class="form-control" placeholder="Enter your Destination"
+                        required>
                 </div>
                 <div class="col-12" id="service-details">
                     <div class="d-none row" id="tour">
@@ -90,14 +98,12 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6">
-                    <x-form-input name="persons" label="Persons" type="number" id="persons" required />
+                    <x-form-input name="image" label="Image" type="file" multiple accept="image/*" required />
                 </div>
                 <div class="col-md-6">
-                    <x-form-input name="price" label="Price" id="price-input" readonly required />
-                </div>
-                <div class="col-md-6">
-                    <input type="button" value="Calculate Price" class="btn btn-info" id="calculate-price">
+                    <x-form-input name="price" label="Price" type="number" required />
                 </div>
                 <div class="col-12">
                     <x-form-submit class=" text-white">Create</x-form-submit>
