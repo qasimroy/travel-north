@@ -41,7 +41,7 @@ header('Expires: 0');
 
         @yield('scripts')
     </div>
-
+    <script src="//code.tidio.co/fl6qbztyalsiopup8ovvxh3lker9yomj.js" async></script>
 </body>
 
 </html>
