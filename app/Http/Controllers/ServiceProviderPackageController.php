@@ -8,14 +8,16 @@ use Auth;
 use Carbon\Carbon;
 use App\Models\ServiceProviderServices;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ServiceProviderPackageController extends Controller
 {
     public function index()
     {
-        $package = Package::where('service_provider_id', auth()->user()->id)->get();
+        $packages = Package::where('service_provider_id', auth()->user()->id)->get();
         $services = ServiceProviderServices::where('service_provider_id', auth()->user()->id)->get();
-        return view('service-provider.package',compact('services', 'package'));
+        return view('service-provider.package',compact('services', 'packages'));
     }
     public function create(){
         $services = ServiceProviderServices::where('service_provider_id', auth()->user()->id)->get();
@@ -24,6 +26,7 @@ class ServiceProviderPackageController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->file('image'));
         $validatedData = $request->validate([
             'startDate' => 'required|date_format:Y-m-d',
             'endDate' => 'required|date_format:Y-m-d',
@@ -43,22 +46,24 @@ class ServiceProviderPackageController extends Controller
         $package = new Package();
         $package->service_provider_id = $service_provider_id;
         $package->start_date = Carbon::createFromFormat("Y-m-d", $validatedData['startDate'])->toDateTimeString();
-        $package->start_date = Carbon::createFromFormat("Y-m-d", $validatedData['endDate'])->toDateTimeString();
+        $package->end_date = Carbon::createFromFormat("Y-m-d", $validatedData['endDate'])->toDateTimeString();
         $package->days = $validatedData['days'];
         $package->service_id = $validatedData['service_id'];
         $package->origin = $validatedData['origin'];
         $package->destination = $validatedData['destination'] ?? null;
-        $package->person = $validatedData['persons'];
         $package->hotel = $validatedData['hotel'] ?? null;
         $package->coach = $validatedData['coach'] ?? null;
         $package->shuttle = $validatedData['shuttle'] ?? null;
         
-        if ($request->file('image')->isValid()) {
+
+        
+        $image = $request->file('image');
+        if ($image->isValid()) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->storeAs('public/images', $imageName);
             $package->image = 'images/' . $imageName;
-        }   
-
+        }
+        
         $package->price = $request->input('price');
 
         $package->save();

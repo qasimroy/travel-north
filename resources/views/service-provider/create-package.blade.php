@@ -14,11 +14,15 @@
     </div>
     <div class="container d-flex justify-content-center">
         <div class="w-50 p-5 bg-white rounded">
-            <form class="row g-3 text-dark" method="POST" action="{{-- route('user.bookings.store') --}}" id="booking-form"
-                enctype="multipart/form-data">
+            <form class="row g-3 text-dark" method="POST" action="{{ route('service-provider.package.store') }}"
+                id="booking-form" enctype="multipart/form-data">
                 @csrf
                 <div class="col-md-6">
                     <x-form-input name="startDate" label="Start Date" type="date" min="{{ date('Y-m-d') }}" required
+                        autofocus />
+                </div>
+                <div class="col-md-6">
+                    <x-form-input name="endDate" label="End Date" type="date" min="{{ date('Y-m-d') }}" required
                         autofocus />
                 </div>
                 <div class="col-md-6">
@@ -100,7 +104,8 @@
                 </div>
 
                 <div class="col-md-6">
-                    <x-form-input name="image" label="Image" type="file" multiple accept="image/*" required />
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" name="image" class="form-control" accept="image/*" required>
                 </div>
                 <div class="col-md-6">
                     <x-form-input name="price" label="Price" type="number" required />
