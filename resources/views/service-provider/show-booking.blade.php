@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @include('service-provider.layouts.header')
-<h2 class="fs-2 m-0">Edit Service</h2>
+<h2 class="fs-2 m-0">Booking</h2>
 </div>
 </nav>
 <div class="container d-flex justify-content-center">

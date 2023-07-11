@@ -37,7 +37,7 @@ class ServiceProviderPackageController extends Controller
             'hotel' => 'sometimes|nullable|string',
             'coach' => 'sometimes|nullable|string',
             'shuttle' => 'sometimes|nullable|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'price' => 'required|integer',
         ]);
 
@@ -78,8 +78,42 @@ class ServiceProviderPackageController extends Controller
     public function update(Request $request, int $package)
     {
         
+        
+        $package = Package::find($package);
+        $service_provider_id = Auth::id();
+        $package->service_provider_id = $service_provider_id;
+        $package->start_date = Carbon::createFromFormat("Y-m-d", $request->input('startDate'))->toDateTimeString();
+        $package->end_date = Carbon::createFromFormat("Y-m-d", $request->input('endDate'))->toDateTimeString();
+        $package->days = $request->input('days');
+        $package->service_id = $request->input('service_id');
+        $package->origin = $request->input('origin');
+        $package->destination = $request->input('destination') ?? null;
+        $package->hotel = $request->input('hotel') ?? null;
+        $package->coach = $request->input('coach') ?? null;
+        $package->shuttle = $request->input('shuttle') ?? null;
+        
+
+        
+        $image = $request->file('image');
+        if ($image->isValid()) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/images', $imageName);
+            $package->image = 'images/' . $imageName;
+        }
+        
+        $package->price = $request->input('price');
+
+        $package->save();
+        
 
 
         return redirect()->route('service-provider.package')->with('success', 'Updated!');
+    }
+
+    public function destroy(int $package)
+    {
+        Package::find($package)->delete();
+        return redirect()->route('service-provider.package')->with('success', 'Booking deleted successfully.');
+
     }
 }

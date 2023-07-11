@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(distance);
 
         const persons = +$('#persons').val();
-        const totalPrice = (servicePrice + (distance / 2)) * days * (persons / 2);
+        const totalPrice = (servicePrice + (distance)) * days * (persons / 2);
         console.log(persons);
         console.log(totalPrice);
 

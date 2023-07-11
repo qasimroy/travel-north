@@ -108,8 +108,7 @@
 
                 <div class="col-md-6">
                     <label for="image" class="form-label">Image</label>
-                    <input type="file" name="image" class="form-control"
-                        value="{{ URL::asset('storage/' . $package->image) }}" accept="image/*" required>
+                    <input type="file" name="image" class="form-control" accept="image/*" required>
                 </div>
                 <div class="col-md-6">
                     <x-form-input name="price" label="Price" type="number" value="{{ $package->price }}"

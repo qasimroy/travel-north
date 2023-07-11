@@ -14,9 +14,9 @@
                 </a>
             </div>
         </div><br><br>
-        <div class="row d-flex justify-content-around">
+        <div class="row d-flex justify-content-between">
             @foreach ($packages as $package)
-                <div class="col-md-3">
+                <div class="col-md-3 py-2">
                     <div class="card shadow border-0 h-100" style="width: 18rem;">
                         <img src="{{ asset('storage/' . $package->image) }}" class="card-img-top image" alt="Package Image">
                         <div class="card-body">
@@ -39,7 +39,43 @@
                                 <a href="{{ route('service-provider.package.edit', $package->id) }}"
                                     class="btn btn-outline-success">Edit
                                     <i class="fas fa-edit"></i></a>
-                                <a href="#" class="btn btn-outline-danger">Delete <i class="fas fa-trash"></i></a>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop">
+                                    Delete <i class="fas fa-trash"></i>
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete this package?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancel</button>
+                                                <form
+                                                    action="{{ route('service-provider.package.destroy', $package->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-outline-danger">Delete
+                                                        <i class="fas fa-trash"></i></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
 
                                 <div class="modal fade" id="staticBackdrop{{ $package->id }}" tabindex="-1"
                                     role="dialog" aria-labelledby="staticBackdrop{{ $package->id }}Label"

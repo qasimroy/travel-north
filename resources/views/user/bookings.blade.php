@@ -8,13 +8,13 @@
 
 
 <div class="container-fluid px-4">
-    <div class="row float-end my-2">
-        <div class="">
+    <div class="row my-2">
+        <div class="d-flex justify-content-end">
             <a href="{{ route('user.bookings.create') }}">
-                <button class="btn text-white cta" type="button" > Add <i class="fas fa-plus"></i></button>
+                <button class="btn text-white cta ms-1" type="button" > Add <i class="fas fa-plus"></i></button>
             </a>
             <a href="{{ route('user.bookings.trash') }}">
-                <button class="btn text-white btn-danger" type="button" >Trash <i class="fas fa-trash-alt"></i></button>
+                <button class="btn text-white btn-danger ms-1" type="button" >Trash <i class="fas fa-trash-alt"></i></button>
             </a>
         </div>
     </div>
@@ -76,12 +76,36 @@
 
                     <a href="{{ route('user.bookings.edit', $booking->id) }}"><button
                             class="btn btn-primary text-white">Edit <i class="fas fa-edit"></i></button></a>
-                    <form action="{{ route('user.bookings.destroy', $booking->id) }}" method="POST"
-                        style="display: inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Trash <i class="fas fa-trash-alt"></i></button>
-                    </form>
+                    
+                        <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Trash <i class="fas fa-trash-alt"></i>
+                    </button>
+                    
+                    <!-- Modal -->
+                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to trash this booking?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <form action="{{ route('user.bookings.destroy', $booking->id) }}" method="POST"
+                                    style="display: inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">Trash <i class="fas fa-trash-alt"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    
                 </td>
             </tr>
             @php

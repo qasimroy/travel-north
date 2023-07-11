@@ -46,6 +46,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/bookings', [BookingsController::class, 'index'])->name('bookings');
 Route::get('/package', [PackageController::class, 'index'])->name('package');
+Route::get('/package-list',[PackageController::class, 'show'])->name('package-list.show');
 Route::get('/service-providers', [ServiceProviderController::class, 'index'])->name('service-providers');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/services', [ServiceController::class, 'index'])->name('services');
@@ -90,6 +91,7 @@ Route::group(['middleware' => ['restrict.service-provider']], function () {
     Route::post('/service-provider/package/store', [ServiceProviderPackageController::class, 'store'])->name('service-provider.package.store');
     Route::get('/service-provider/package/{package}/edit', [ServiceProviderPackageController::class, 'edit'])->name('service-provider.package.edit');
     Route::post('/service-provider/package/{package}', [ServiceProviderPackageController::class, 'update'])->name('service-provider.package.update');
+    Route::delete('/service-provider/package/{package}', [ServiceProviderPackageController::class, 'destroy'])->name('service-provider.package.destroy');
     Route::get('/service-provider/profile', [ServiceProviderProfileController::class, 'index'])->name('service-provider.profile');
     Route::post('/service-provider/profile/{profile}', [ServiceProviderProfileController::class, 'update'])->name('service-provider.profile.update');
 });

@@ -5,7 +5,7 @@
         <section class="main-bg text-white text-center d-flex flex-column align-items-center justify-content-center h-100v">
             <h1>Discover Your Perfect Getaway</h1>
             <h4>Explore and book the best travel experiences with our comprehensive travel platform.</h4>
-            <a href="{{ route('register') }}" class="btn cta">Get Started</a>
+            <a href="{{ route('package-list.show') }}" class="btn cta">View Packages</a>
         </section>
         <section class="bg-white p-4">
             <div class="container">
