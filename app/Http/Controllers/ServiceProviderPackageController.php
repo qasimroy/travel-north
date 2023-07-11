@@ -69,4 +69,17 @@ class ServiceProviderPackageController extends Controller
         $package->save();
         return redirect()->route('service-provider.package')->with('success', 'Package Created Successfully');
     }
+
+    public function edit(Package $package){
+        $services = ServiceProviderServices::where('service_provider_id', auth()->user()->id)->get();
+        return view('service-provider.edit-package',compact('services', 'package'));
+    }
+
+    public function update(Request $request, int $package)
+    {
+        
+
+
+        return redirect()->route('service-provider.package')->with('success', 'Updated!');
+    }
 }
