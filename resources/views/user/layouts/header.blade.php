@@ -10,6 +10,10 @@
                 class="list-group-item list-group-item-action bg-transparent second-text fw-bold {{ Request::is('bookings*') ? 'class=active' : '' }}">
                 <i class="fas fa-book me-2"></i>Bookings
             </a>
+            <a href="{{ url('/package') }}"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <i class="fas fa-gift me-2"></i>Package
+            </a>
             <a href="{{ url('/service-providers') }}"
                 class="list-group-item list-group-item-action bg-transparent second-text fw-bold {{ Request::is('service-providers*') ? 'class=active' : '' }}">
                 <i class="fas fa-users me-2"></i>Service Providers

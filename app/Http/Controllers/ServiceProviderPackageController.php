@@ -39,6 +39,7 @@ class ServiceProviderPackageController extends Controller
             'shuttle' => 'sometimes|nullable|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'price' => 'required|integer',
+            'seat' => 'required|integer',
         ]);
 
         $service_provider_id = Auth::id();
@@ -65,6 +66,7 @@ class ServiceProviderPackageController extends Controller
         }
         
         $package->price = $request->input('price');
+        $package->seat = $request->input('seat');
 
         $package->save();
         return redirect()->route('service-provider.package')->with('success', 'Package Created Successfully');
@@ -102,6 +104,7 @@ class ServiceProviderPackageController extends Controller
         }
         
         $package->price = $request->input('price');
+        $package->seat = $request->input('seat');
 
         $package->save();
         

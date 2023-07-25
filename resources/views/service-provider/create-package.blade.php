@@ -110,6 +110,9 @@
                 <div class="col-md-6">
                     <x-form-input name="price" label="Price" type="number" required />
                 </div>
+                <div class="col-md-6">
+                    <x-form-input name="seat" label="Space for Persons" type="number" required />
+                </div>
                 <div class="col-12">
                     <x-form-submit class=" text-white">Create</x-form-submit>
                 </div>

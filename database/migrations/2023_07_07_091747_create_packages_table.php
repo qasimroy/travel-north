@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('coach')->nullable();
             $table->string('shuttle')->nullable();
             $table->integer('price');
+            $table->integer('seat');
             $table->string('image')->nullable();
             $table->enum('status', [Package::OPEN, Package::CLOSED]);
             $table->timestamps();

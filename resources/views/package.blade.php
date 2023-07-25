@@ -10,22 +10,22 @@
                 <div class="container-fluid px-4">
                     <div class="row d-flex justify-content-between">
                         @foreach ($packages as $package)
-                            <div class="col-md-3 py-3">
-                                <div class="card shadow border-0 h-100" style="width: 18rem;">
+                            <div class="col-md-3 py-3 ">
+                                <div class="card shadow border-0 h-100 card-shadow" style="width: 18rem;">
                                     <img src="{{ asset('storage/' . $package->image) }}" class="card-img-top image"
                                         alt="Package Image">
                                     <div class="card-body">
                                         <h4 class="card-title">{{ $package->days }} Days trip from {{ $package->origin }} to
                                             {{ $package->destination }}</h4>
                                         <hr>
-                                        <p class="card-text">{{ $package->days }} Days & {{ $package->days - 1 }} Nights
-                                            <br>
-                                            Rs. {{ $package->price }} <br>
-                                            @if ($package->status == 'Open')
-                                                <h5 class="text-success">Open</h5>
-                                            @elseif ($package->status == 'Closed')
-                                                <h5 class="text-danger">Closed</h5>
-                                            @endif
+                                        <p class="card-text m-0">{{ $package->days }} Days & {{ $package->days - 1 }} Nights
+                                        <p class="card-text m-0">Seats Remaining: {{ $package->seat }}</p>
+                                        Rs. {{ $package->price }} <br>
+                                        @if ($package->status == 'Open')
+                                            <h5 class="text-success">Open</h5>
+                                        @elseif ($package->status == 'Closed')
+                                            <h5 class="text-danger">Closed</h5>
+                                        @endif
                                         </p>
                                         <div class="d-flex align-items-end justify-content-between">
                                             <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
@@ -70,6 +70,7 @@
                                                             </p>
                                                             <p>{{ $package->days }} Days & {{ $package->days - 1 }} Nights
                                                             </p>
+                                                            <p>Seats Available: {{ $package->seat }}</p>
                                                             <p>Rs. {{ $package->price }}</p>
                                                             <p>Status: @if ($package->status == 'Open')
                                                                     <b class="text-success">Open</b>
