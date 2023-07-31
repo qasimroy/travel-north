@@ -15,7 +15,9 @@ class UserBookingController extends Controller
 {
     public function index()
     {
-        $bookings = Booking::where('user_id', auth()->user()->id)->paginate(5);
+        $bookings = Booking::where('user_id', auth()->user()->id)
+        ->orderBy('created_at', 'desc')
+        ->paginate(8);
         $services = Service::all();
         $serviceProviderIds = $bookings->pluck('service_provider_id')->toArray();
         $serviceProviders = User::whereIn('id', $serviceProviderIds)->get();

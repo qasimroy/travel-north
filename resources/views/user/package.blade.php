@@ -10,7 +10,7 @@
         <div class="row d-flex justify-content-between">
             @foreach ($packages as $package)
                 <div class="col-md-3 py-2">
-                    <div class="card shadow border-0 h-100" style="width: 18rem;">
+                    <div class="card shadow border-0 h-100 b-radius" style="width: 18rem;">
                         <img src="{{ asset('storage/' . $package->image) }}" class="card-img-top image" alt="Package Image">
                         <div class="card-body">
                             <h4 class="card-title">{{ $package->days }} Days trip from {{ $package->origin }} to
@@ -25,53 +25,30 @@
                                 @endif
                             </p>
                             <div class="d-flex align-items-end justify-content-between">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#staticBackdrop{{ $package->id }}">
-                                    Explore <i class="fas fa-search"></i>
+                                <button type="button" class="btn btn-outline-secondary d-flex align-items-center"
+                                    data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ $package->id }}">
+                                    Explore&nbsp;
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search">
+                                        <circle cx="11" cy="11" r="8" />
+                                        <path d="m21 21-4.3-4.3" />
+                                    </svg>
                                 </button>
-                                <a href="{{ route('service-provider.package.edit', $package->id) }}"
-                                    class="btn btn-outline-success">Edit
-                                    <i class="fas fa-edit"></i></a>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                    data-bs-target="#staticBackdrop">
-                                    Delete <i class="fas fa-trash"></i>
-                                </button>
-
-                                <!-- Modal -->
-                                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                                    data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
-                                    aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure you want to delete this package?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Cancel</button>
-                                                <form action="{{ route('service-provider.package.destroy', $package->id) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger">Delete
-                                                        <i class="fas fa-trash"></i></button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a href="{{ route('user.package.book', $package->id) }}"
+                                    class="btn btn-outline-success d-flex align-items-center">Book&nbsp;
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book">
+                                        <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                                    </svg>
+                                </a>
 
 
 
-                                <div class="modal fade" id="staticBackdrop{{ $package->id }}" tabindex="-1"
-                                    role="dialog" aria-labelledby="staticBackdrop{{ $package->id }}Label"
-                                    data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+                                <div class="modal fade" id="staticBackdrop{{ $package->id }}" tabindex="-1" role="dialog"
+                                    aria-labelledby="staticBackdrop{{ $package->id }}Label" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" aria-hidden="true">
                                     <div class="modal-dialog " role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -132,4 +109,10 @@
     </div>
     <!-- here -->
     @include('user.layouts.footer')
+@section('scripts')
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+@endsection
 @endsection

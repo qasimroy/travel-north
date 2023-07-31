@@ -69,6 +69,8 @@ Route::group(['middleware' => ['restrict.user']], function () {
     Route::get('/user/service-providers/book/', [UserServiceProviderController::class, 'book'])->name('user.service-providers.book');
     Route::get('/user/services', [UserServicesController::class, 'index'])->name('user.services');
     Route::get('/user/package', [UserPackageController::class, 'index'])->name('user.package');
+    Route::get('/user/package/{package}/book',[UserPackageController::class, 'book'])->name('user.package.book');
+    Route::post('/user/package/book/store',[UserPackageController::class, 'store'])->name('user.package.book.store');
     Route::get('/user/profile', [UserProfileController::class, 'index'])->name('user.profile');
     Route::post('/user/profile/{profile}', [UserProfileController::class, 'update'])->name('user.profile.update');
 });

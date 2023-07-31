@@ -12,5 +12,8 @@
         "prettier": "^2.8.8",
         "sass": "^1.56.1",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "lucide": "^0.263.0"
     }
 }
