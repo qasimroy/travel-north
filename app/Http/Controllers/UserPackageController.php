@@ -37,4 +37,13 @@ class UserPackageController extends Controller
         $packageBooking->save();
         return redirect()->route('user.package')->with('success', 'Package Booked Successfully!');
     }
+    public function show()
+    {
+        $packageBookings = packageBooking::where('user_id', auth()->user()->id)
+        ->orderBy('created_at', 'desc')
+        ->paginate(8);
+        return view('user.packaged-booking', compact('packageBookings'));
+    }
+
+
 }

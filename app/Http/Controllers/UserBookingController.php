@@ -30,6 +30,47 @@ class UserBookingController extends Controller
         }
         return view('user.bookings', compact('services', 'bookings'));
     }
+    public function pending()
+    {
+        $bookings = Booking::where('user_id', auth()->user()->id)
+        ->where('status', 'pending')
+        ->orderBy('created_at', 'desc')
+        ->paginate(8);
+        return view('user.pending-booking', compact('bookings'));
+    }
+    public function accepted()
+    {
+        $bookings = Booking::where('user_id', auth()->user()->id)
+        ->where('status', 'accepted')
+        ->orderBy('created_at', 'desc')
+        ->paginate(8);
+        $serviceProviderIds = $bookings->pluck('service_provider_id')->toArray();
+        $serviceProviders = User::whereIn('id', $serviceProviderIds)->get();
+
+        foreach ($bookings as $booking) {
+            if ($booking->status === 'accepted') {
+                $serviceProvider = $serviceProviders->firstWhere('id', $booking->service_provider_id);
+                $booking->serviceProvider = $serviceProvider;
+            }
+        }
+        return view('user.accepted-booking', compact('bookings'));
+    }
+    public function rejected()
+    {
+        $bookings = Booking::where('user_id', auth()->user()->id)
+        ->where('status', 'rejected')
+        ->orderBy('created_at', 'desc')
+        ->paginate(8);
+        return view('user.rejected-booking', compact('bookings'));
+    }
+    public function completed()
+    {
+        $bookings = Booking::where('user_id', auth()->user()->id)
+        ->where('status', 'completed')
+        ->orderBy('created_at', 'desc')
+        ->paginate(8);
+        return view('user.completed-booking', compact('bookings'));
+    }
 
     public function store(Request $request)
     {

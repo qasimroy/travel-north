@@ -57,6 +57,11 @@ Route::get('/services', [ServiceController::class, 'index'])->name('services');
 Route::group(['middleware' => ['restrict.user']], function () {
     Route::get('/user/home', [UserHomeController::class, 'index'])->name('user.home');
     Route::get('/user/bookings', [UserBookingController::class, 'index'])->name('user.bookings');
+    Route::get('/user/bookings/pending', [UserBookingController::class, 'pending'])->name('user.bookings.pending');
+    Route::get('/user/bookings/accepted', [UserBookingController::class, 'accepted'])->name('user.bookings.accepted');
+    Route::get('/user/bookings/rejected', [UserBookingController::class, 'rejected'])->name('user.bookings.rejected');
+    Route::get('/user/bookings/completed', [UserBookingController::class, 'completed'])->name('user.bookings.completed');
+    Route::get('/user/bookings/package', [UserPackageController::class, 'show'])->name('user.bookings.show');
     Route::get('/user/bookings/create', [UserBookingController::class, 'create'])->name('user.bookings.create');
     Route::get('/user/bookings/trash', [UserBookingController::class, 'trash'])->name('user.bookings.trash');
     Route::delete('/user/bookings/trash/delete/{id}', [UserBookingController::class, 'forceDelete'])->name('user.bookings.trash.delete');

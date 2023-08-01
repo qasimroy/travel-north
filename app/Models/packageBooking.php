@@ -13,4 +13,9 @@ class packageBooking extends Model
     const COMPLETED = 'completed';
 
     use HasFactory;
+
+    public function package()
+    {
+        return $this->belongsTo(Package::class, 'package_id');
+    }
 }

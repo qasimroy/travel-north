@@ -229,3 +229,31 @@ document.addEventListener('DOMContentLoaded', function () {
         calculatePrice();
     });
 });
+
+
+$(document).ready(function () {
+    $('select[name="bookings"]').on('change', function () {
+        var selectedOption = $(this).val();
+        var url = "/user/bookings";
+        switch (selectedOption) {
+            case 'all':
+                url = "/user/bookings";
+                break;
+            case 'pending':
+                url = "/user/bookings/pending";
+                break;
+            case 'accepted':
+                url = "/user/bookings/accepted";
+                break;
+            case 'rejected':
+                url = "/user/bookings/rejected";
+                break;
+            case 'completed':
+                url = "/user/bookings/completed";
+                break;
+        }
+        if (url) {
+            window.location.href = url;
+        }
+    });
+});

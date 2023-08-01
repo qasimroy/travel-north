@@ -186,6 +186,10 @@
     aspect-ratio: 1/1;
     object-fit: cover;
 }
-.b-radius {
-    border-radius: 15px;
+.card-text p {
+    margin-bottom: 0;
+}
+
+.card-footer {
+    flex-wrap: wrap;
 }

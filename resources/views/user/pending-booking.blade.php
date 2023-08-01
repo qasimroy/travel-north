@@ -13,8 +13,8 @@
                 <div class="d-flex justify-content-between w-100">
                     <div class="col-md-8">
                         <x-form-select label="" name="bookings" class="border-0">
-                            <option value="all" selected>All Bookings</option>
-                            <option value="pending">Pending Bookings</option>
+                            <option value="all">All Bookings</option>
+                            <option value="pending" selected>Pending Bookings</option>
                             <option value="accepted">Accepted Bookings</option>
                             <option value="rejected">Rejected Bookings</option>
                             <option value="completed">Completed Bookings</option>
