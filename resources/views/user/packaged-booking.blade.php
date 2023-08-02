@@ -6,10 +6,10 @@
     </div>
     </nav>
     <div class="container-fluid px-4">
-        <div class="row d-flex justify-content-between">
+        <div class="row d-flex justify-content-start">
             @foreach ($packageBookings as $packageBooking)
                 <div class="col-md-3 py-2">
-                    <div class="card shadow border-0 h-100 b-radius" style="width: 18rem;">
+                    <div class="card shadow border-0 h-100 b-radius" style="width: 18.5rem;">
                         <img src="{{ asset('storage/' . $packageBooking->package->image) }}" class="card-img-top image"
                             alt="Package Image">
                         <div class="card-body">
@@ -42,7 +42,7 @@
                                         <path d="m21 21-4.3-4.3" />
                                     </svg>
                                 </button>
-                                <a href="{{-- route('user.package.book',$packageBooking->id) --}}"
+                                <a href="{{ route('user.bookings.package.edit', $packageBooking->id) }}"
                                     class="btn btn-outline-success d-flex align-items-center">Edit&nbsp;
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
@@ -51,6 +51,23 @@
                                         <path d="m15 5 4 4" />
                                     </svg>
                                 </a>
+                                <form action="{{ route('user.bookings.package.destroy', $packageBooking->id) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"
+                                        class="btn btn-outline-danger d-flex align-items-center">Delete&nbsp;
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                            stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2">
+                                            <path d="M3 6h18" />
+                                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                                            <line x1="10" x2="10" y1="11" y2="17" />
+                                            <line x1="14" x2="14" y1="11" y2="17" />
+                                        </svg>
+                                    </button>
+                                </form>
 
 
 

@@ -6,6 +6,7 @@ use App\Models\Package;
 use App\Models\packageBooking;
 use App\Models\User;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\FuncCall;
 
 class UserPackageController extends Controller
 {
@@ -44,6 +45,29 @@ class UserPackageController extends Controller
         ->paginate(8);
         return view('user.packaged-booking', compact('packageBookings'));
     }
+    public function edit($id)
+    {
+        $packageBookings = PackageBooking::findOrFail($id);
+        return view('user.edit-package-booking', compact('packageBookings'));
+    }
+    public function update(Request $request, $id)
+    {
+        $packageBooking = PackageBooking::findOrFail($id);
 
+        $validatedData = $request->validate([
+            'persons' => 'required|numeric|min:1',
+        ]);
+        $packageBooking->persons = $validatedData['persons'];
+        $packageBooking->save();
+
+        return redirect()->route('user.bookings.show')->with('success', 'Booking Updated Successfully!');
+    }
+    public function destroy($id)
+    {
+        $packageBooking = PackageBooking::findOrFail($id);
+        $packageBooking->delete();
+
+        return redirect()->route('user.bookings.show')->with('success', 'Booking Deleted Successfully!');
+    }
 
 }

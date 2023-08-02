@@ -62,6 +62,9 @@ Route::group(['middleware' => ['restrict.user']], function () {
     Route::get('/user/bookings/rejected', [UserBookingController::class, 'rejected'])->name('user.bookings.rejected');
     Route::get('/user/bookings/completed', [UserBookingController::class, 'completed'])->name('user.bookings.completed');
     Route::get('/user/bookings/package', [UserPackageController::class, 'show'])->name('user.bookings.show');
+    Route::get('/user/bookings/package/{id}/edit', [UserPackageController::class, 'edit'])->name('user.bookings.package.edit');
+    Route::post('/user/bookings/package/{id}', [UserPackageController::class, 'update'])->name('user.bookings.package.update');
+    Route::delete('/user/bookings/package/{id}/delete', [UserPackageController::class, 'destroy'])->name('user.bookings.package.destroy');
     Route::get('/user/bookings/create', [UserBookingController::class, 'create'])->name('user.bookings.create');
     Route::get('/user/bookings/trash', [UserBookingController::class, 'trash'])->name('user.bookings.trash');
     Route::delete('/user/bookings/trash/delete/{id}', [UserBookingController::class, 'forceDelete'])->name('user.bookings.trash.delete');
