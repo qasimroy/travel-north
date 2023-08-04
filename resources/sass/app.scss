@@ -193,3 +193,11 @@
 .card-footer {
     flex-wrap: wrap;
 }
+
+#list-tab .active {
+    color: black;
+    border-bottom: 2px solid black;
+}
+.color {
+    background-color: #3cb3875b;
+}

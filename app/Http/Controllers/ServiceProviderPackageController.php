@@ -120,7 +120,7 @@ class ServiceProviderPackageController extends Controller
 
     }
 
-    public function explore( int $package)
+    public function explore(Package $package)
     {
         return view('service-provider.explore-package', compact('package'));
     }
