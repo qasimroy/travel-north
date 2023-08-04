@@ -119,4 +119,9 @@ class ServiceProviderPackageController extends Controller
         return redirect()->route('service-provider.package')->with('success', 'Booking deleted successfully.');
 
     }
+
+    public function explore( int $package)
+    {
+        return view('service-provider.explore-package', compact('package'));
+    }
 }

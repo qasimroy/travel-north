@@ -14,10 +14,10 @@
                 </a>
             </div>
         </div><br><br>
-        <div class="row d-flex justify-content-between">
+        <div class="row d-flex justify-content-start">
             @foreach ($packages as $package)
-                <div class="col-md-3 py-2">
-                    <div class="card shadow border-0 h-100" style="width: 18rem;">
+                <div class="col-md-3 py-2 d-flex justify-content-center">
+                    <div class="card shadow border-0 h-100 " style="width: 18.5rem;">
                         <img src="{{ asset('storage/' . $package->image) }}" class="card-img-top image" alt="Package Image">
                         <div class="card-body">
                             <h4 class="card-title">{{ $package->days }} Days trip from {{ $package->origin }} to
@@ -32,17 +32,38 @@
                                 @endif
                             </p>
                             <div class="d-flex align-items-end justify-content-between">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#staticBackdrop{{ $package->id }}">
-                                    Explore <i class="fas fa-search"></i>
-                                </button>
+                                <a type="button" href="{{ route('service-provider.package.explore', $package->id) }}"
+                                    class="btn btn-outline-secondary d-flex align-items-center">
+                                    Explore&nbsp;
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search">
+                                        <circle cx="11" cy="11" r="8" />
+                                        <path d="m21 21-4.3-4.3" />
+                                    </svg>
+                                </a>
                                 <a href="{{ route('service-provider.package.edit', $package->id) }}"
-                                    class="btn btn-outline-success">Edit
-                                    <i class="fas fa-edit"></i></a>
+                                    class="btn btn-outline-success d-flex align-items-center">Edit&nbsp;
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
+                                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pencil">
+                                        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+                                        <path d="m15 5 4 4" />
+                                    </svg>
+                                </a>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                    data-bs-target="#staticBackdrop">
-                                    Delete <i class="fas fa-trash"></i>
+                                <button type="button" class="btn btn-outline-danger d-flex align-items-center"
+                                    data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                    Delete&nbsp;
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2">
+                                        <path d="M3 6h18" />
+                                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                                        <line x1="10" x2="10" y1="11" y2="17" />
+                                        <line x1="14" x2="14" y1="11" y2="17" />
+                                    </svg>
                                 </button>
 
                                 <!-- Modal -->
@@ -67,28 +88,39 @@
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger">Delete
-                                                        <i class="fas fa-trash"></i></button>
+                                                    <button type="submit" class="btn btn-outline-danger">
+                                                        Delete
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                            height="16" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="1.5"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            class="lucide lucide-trash-2">
+                                                            <path d="M3 6h18" />
+                                                            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                                                            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                                                            <line x1="10" x2="10" y1="11"
+                                                                y2="17" />
+                                                            <line x1="14" x2="14" y1="11"
+                                                                y2="17" />
+                                                        </svg>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-
-
-                                <div class="modal fade" id="staticBackdrop{{ $package->id }}" tabindex="-1"
+                                {{-- <div class="modal fade" id="staticBackdrop{{ $package->id }}" tabindex="-1"
                                     role="dialog" aria-labelledby="staticBackdrop{{ $package->id }}Label"
                                     data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
                                     <div class="modal-dialog " role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdrop{{ $package->id }}Label">Package
+                                                <h5 class="modal-title" id="staticBackdrop{{ $package->id }}Label">
+                                                    Package
                                                     Details
                                                 </h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
-
                                             </div>
                                             <div class="modal-body">
                                                 <p>We are providing a tour plan for {{ $package->days }} days from
@@ -121,7 +153,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
