@@ -78,9 +78,12 @@ class UserPackageController extends Controller
     public function destroy($id)
     {
         $packageBooking = PackageBooking::findOrFail($id);
+        $persons = $packageBooking->persons;
+        $package = $packageBooking->package;
         $packageBooking->delete();
+        $package->persons_booked -= $persons;
+        $package->save();
 
         return redirect()->route('user.bookings.show')->with('success', 'Booking Deleted Successfully!');
     }
-
 }

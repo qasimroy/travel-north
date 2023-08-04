@@ -146,7 +146,7 @@
                                                 </p>
                                                 <p>{{ $packageBooking->package->days }} Days &
                                                     {{ $packageBooking->package->days - 1 }} Nights</p>
-                                                <p>Rs. {{ $packageBooking->package->price }}</p>
+                                                <p>Rs. {{ $packageBooking->package->price * $packageBooking->persons }}</p>
                                                 <p>Status: @if ($packageBooking->status == 'pending')
                                                         <h5 class="text-secondary">Pending</h5>
                                                     @elseif ($packageBooking->status == 'accepted')

@@ -29,6 +29,12 @@
 .secondary-bg {
     background-color: var(--second-bg-color);
 }
+.accept-tooltip {
+    --bs-tooltip-bg: #198754;
+}
+.reject-tooltip {
+    --bs-tooltip-bg: #dc3545;
+}
 
 .cta {
     background: #67dcb1;

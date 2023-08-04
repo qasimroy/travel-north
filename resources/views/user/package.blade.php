@@ -68,8 +68,12 @@
                                                 </p>
                                                 <p>The services we are providing are:
                                                 <ul>
-                                                    <li>Luxury {{ $package->hotel }} Hotel</li>
-                                                    <li>Comfortable {{ $package->coach }} Coach</li>
+                                                    @if ($package->hotel != null)
+                                                        <li>Luxury {{ $package->hotel }} Hotel</li>
+                                                    @endif
+                                                    @if ($package->coach != null)
+                                                        <li>Comfortable {{ $package->coach }} Coach</li>
+                                                    @endif
                                                     @if ($package->shuttle != null)
                                                         <li>{{ $package->shuttle }} Shuttle Service</li>
                                                     @endif

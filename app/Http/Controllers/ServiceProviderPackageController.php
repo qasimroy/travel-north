@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Package;
+use App\Models\packageBooking;
 use App\Models\Service;
 use Auth;
 use Carbon\Carbon;
@@ -122,6 +123,7 @@ class ServiceProviderPackageController extends Controller
 
     public function explore(Package $package)
     {
-        return view('service-provider.explore-package', compact('package'));
+        $packageBookings = packageBooking::with('user')->where('package_id', $package->id)->get();
+        return view('service-provider.explore-package', compact('package', 'packageBookings'));
     }
 }

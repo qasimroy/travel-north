@@ -14,6 +14,10 @@ function debounce(func, wait = 500, immediate) {
     };
 }
 
+
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
 const el = document.getElementById('wrapper');
 const toggleButton = document.getElementById('menu-toggle');
 
@@ -229,6 +233,8 @@ document.addEventListener('DOMContentLoaded', function () {
         calculatePrice();
     });
 });
+
+
 
 
 $(document).ready(function () {
