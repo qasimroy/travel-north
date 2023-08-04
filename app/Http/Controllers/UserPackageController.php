@@ -13,6 +13,19 @@ class UserPackageController extends Controller
     public function index()
     {
         $packages = Package::all();
+
+        foreach ($packages as $package) {
+            $packageBookings = packageBooking::where('package_id', $package->id)->get();
+            $persons = $packageBookings->pluck('persons')->toArray();
+            $totalPersonsBooked = array_sum($persons);
+            if ($totalPersonsBooked >= $package->seat) {
+                $package->status = Package::CLOSED;
+                $package->save();
+            }
+            $package->persons_booked = $totalPersonsBooked;
+            $package->save();
+        }
+
         return view('user.package', compact('packages'));
     }
     public function book(int $id)

@@ -18,6 +18,7 @@
                             <hr>
                             <p class="card-text">{{ $package->days }} Days & {{ $package->days - 1 }} Nights <br>
                                 Rs. {{ $package->price }} <br>
+                                Seats Remaining: {{ $package->seat - $package->persons_booked }}<br>
                                 @if ($package->status == 'Open')
                                     <h5 class="text-success">Open</h5>
                                 @elseif ($package->status == 'Closed')
@@ -36,7 +37,7 @@
                                     </svg>
                                 </button>
                                 <a href="{{ route('user.package.book', $package->id) }}"
-                                    class="btn btn-outline-success d-flex align-items-center">Book&nbsp;
+                                    class="btn btn-outline-success d-flex align-items-center {{ $package->status === 'Closed' ? 'disabled' : '' }}">Book&nbsp;
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"
                                         stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book">
@@ -46,9 +47,9 @@
 
 
 
-                                <div class="modal fade" id="staticBackdrop{{ $package->id }}" tabindex="-1" role="dialog"
-                                    aria-labelledby="staticBackdrop{{ $package->id }}Label" data-bs-backdrop="static"
-                                    data-bs-keyboard="false" aria-hidden="true">
+                                <div class="modal fade" id="staticBackdrop{{ $package->id }}" tabindex="-1"
+                                    role="dialog" aria-labelledby="staticBackdrop{{ $package->id }}Label"
+                                    data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
                                     <div class="modal-dialog " role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -76,6 +77,8 @@
                                                 </p>
                                                 <p>{{ $package->days }} Days & {{ $package->days - 1 }} Nights</p>
                                                 <p>Rs. {{ $package->price }}</p>
+                                                <p>Seats Remaining: {{ $package->seat - $package->persons_booked }}</p>
+
                                                 <p>Status: @if ($package->status == 'Open')
                                                         <b class="text-success">Open</b>
                                                     @elseif ($package->status == 'Closed')

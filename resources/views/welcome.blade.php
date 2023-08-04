@@ -95,7 +95,7 @@
                             <x-form-input name="name" label="Name" type="text" required />
                             <x-form-input name="email" label="Email" type="email" required />
                             <x-form-textarea name="message" label="Message" required />
-                            <x-form-submit />
+                            <x-form-submit class="text-white" />
                         </x-form>
                     </div>
                 </div>

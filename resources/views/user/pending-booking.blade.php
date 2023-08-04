@@ -60,7 +60,7 @@
                 <div class="col-md-3 my-2">
                     <div class="card shadow border-0 h-100">
                         <div class="card-header border-0">
-                            <b>Custom Booking Package {{ $count++ }}</b>
+                            <b>Custom Booking{{ $count++ }}</b>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><b>Origin</b>

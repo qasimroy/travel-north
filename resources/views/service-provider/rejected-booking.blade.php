@@ -5,22 +5,25 @@
     <h2 class="fs-2 m-0">Bookings</h2>
     </div>
     </nav>
+
+
     <div class="container-fluid px-4">
         <div class="row my-2 d-flex">
             <div class="d-flex justify-content-start w-50">
                 <div class="d-flex justify-content-between w-100">
                     <div class="col-md-8">
                         <x-form-select label="" name="booking" class="border-0">
-                            <option value="all" selected>All Bookings</option>
+                            <option value="all">All Bookings</option>
                             <option value="pending">Pending Bookings</option>
                             <option value="accepted">Accepted Bookings</option>
-                            <option value="rejected">Rejected Bookings</option>
+                            <option value="rejected" selected>Rejected Bookings</option>
                             <option value="completed">Completed Bookings</option>
                         </x-form-select>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="row">
             @php
                 $count = 1;
@@ -29,7 +32,7 @@
                 <div class="col-md-3 my-2">
                     <div class="card shadow border-0 h-100">
                         <div class="card-header border-0">
-                            <b>Custom Booking {{ $count++ }}</b>
+                            <b>Custom Booking{{ $count++ }}</b>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title"><b>Origin</b>

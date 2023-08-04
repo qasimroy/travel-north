@@ -19,7 +19,8 @@
                                             {{ $package->destination }}</h4>
                                         <hr>
                                         <p class="card-text m-0">{{ $package->days }} Days & {{ $package->days - 1 }} Nights
-                                        <p class="card-text m-0">Seats Remaining: {{ $package->seat }}</p>
+                                        <p class="card-text m-0">Seats Remaining:
+                                            {{ $package->seat - $package->persons_booked }}</p>
                                         Rs. {{ $package->price }} <br>
                                         @if ($package->status == 'Open')
                                             <h5 class="text-success">Open</h5>
@@ -28,13 +29,28 @@
                                         @endif
                                         </p>
                                         <div class="d-flex align-items-end justify-content-between">
-                                            <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop{{ $package->id }}">
-                                                Explore <i class="fas fa-search"></i>
+                                            <button type="button"
+                                                class="btn btn-outline-secondary d-flex align-items-center"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop{{ $package->id }}">
+                                                Explore&nbsp;
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-search">
+                                                    <circle cx="11" cy="11" r="8" />
+                                                    <path d="m21 21-4.3-4.3" />
+                                                </svg>
                                             </button>
-                                            <a href="{{-- route('service-provider.package.edit',$package->id) --}}" class="btn btn-outline-success">Book
-                                                <i class="fas fa-book"></i></a>
-
+                                            <a href="{{ route('user.package.book', $package->id) }}"
+                                                class="btn btn-outline-success d-flex align-items-center {{ $package->status === 'Closed' ? 'disabled' : '' }}">Book&nbsp;
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                                                    class="lucide lucide-book">
+                                                    <path
+                                                        d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                                                </svg>
+                                            </a>
 
                                             <div class="modal fade" id="staticBackdrop{{ $package->id }}" tabindex="-1"
                                                 role="dialog" aria-labelledby="staticBackdrop{{ $package->id }}Label"
@@ -70,7 +86,8 @@
                                                             </p>
                                                             <p>{{ $package->days }} Days & {{ $package->days - 1 }} Nights
                                                             </p>
-                                                            <p>Seats Available: {{ $package->seat }}</p>
+                                                            <p>Seats Available:
+                                                                {{ $package->seat - $package->persons_booked }}</p>
                                                             <p>Rs. {{ $package->price }}</p>
                                                             <p>Status: @if ($package->status == 'Open')
                                                                     <b class="text-success">Open</b>

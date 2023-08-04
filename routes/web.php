@@ -86,6 +86,10 @@ Route::group(['middleware' => ['restrict.user']], function () {
 Route::group(['middleware' => ['restrict.service-provider']], function () {
     Route::get('/service-providers/home', [ServiceProviderHomeController::class, 'index'])->name('service-providers.home');
     Route::get('/service-provider/bookings', [ServiceProviderBookingController::class, 'index'])->name('service-provider.bookings');
+    Route::get('/service-provider/bookings/pending', [ServiceProviderBookingController::class, 'pending'])->name('service-provider.bookings.pending');
+    Route::get('/service-provider/bookings/accepted', [ServiceProviderBookingController::class, 'accepted'])->name('service-provider.bookings.accepted');
+    Route::get('/service-provider/bookings/rejected', [ServiceProviderBookingController::class, 'rejected'])->name('service-provider.bookings.rejected');
+    Route::get('/service-provider/bookings/completed', [ServiceProviderBookingController::class, 'completed'])->name('service-provider.bookings.completed');
     Route::post('/service-provider/bookings/accept/{id}', [ServiceProviderBookingController::class, 'accept'])->name('service-provider.bookings.accept');
     Route::post('/service-provider/bookings/reject/{id}', [ServiceProviderBookingController::class, 'reject'])->name('service-provider.bookings.reject');
     Route::post('/service-provider/bookings/complete/{id}', [ServiceProviderBookingController::class, 'complete'])->name('service-provider.bookings.complete');

@@ -256,4 +256,29 @@ $(document).ready(function () {
             window.location.href = url;
         }
     });
+
+    $('select[name="booking"]').on('change', function () {
+        var selectedOption = $(this).val();
+        var url = "/service-provider/bookings";
+        switch (selectedOption) {
+            case 'all':
+                url = "/service-provider/bookings";
+                break;
+            case 'pending':
+                url = "/service-provider/bookings/pending";
+                break;
+            case 'accepted':
+                url = "/service-provider/bookings/accepted";
+                break;
+            case 'rejected':
+                url = "/service-provider/bookings/rejected";
+                break;
+            case 'completed':
+                url = "/service-provider/bookings/completed";
+                break;
+        }
+        if (url) {
+            window.location.href = url;
+        }
+    });
 });

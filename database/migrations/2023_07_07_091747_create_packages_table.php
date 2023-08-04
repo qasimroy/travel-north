@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('shuttle')->nullable();
             $table->integer('price');
             $table->integer('seat');
+            $table->unsignedInteger('persons_booked')->default(0)->nullable();
             $table->string('image')->nullable();
             $table->enum('status', [Package::OPEN, Package::CLOSED]);
             $table->timestamps();
