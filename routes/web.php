@@ -107,6 +107,9 @@ Route::group(['middleware' => ['restrict.service-provider']], function () {
     Route::post('/service-provider/package/{package}', [ServiceProviderPackageController::class, 'update'])->name('service-provider.package.update');
     Route::delete('/service-provider/package/{package}', [ServiceProviderPackageController::class, 'destroy'])->name('service-provider.package.destroy');
     Route::get('/service-provider/package/{package}/explore', [ServiceProviderPackageController::class, 'explore'])->name('service-provider.package.explore');
+    Route::post('/service-provider/package/accept/{id}', [ServiceProviderPackageController::class, 'accept'])->name('service-provider.package.accept');
+    Route::post('/service-provider/package/reject/{id}', [ServiceProviderPackageController::class, 'reject'])->name('service-provider.package.reject');
+    Route::post('/service-provider/package/complete/{id}', [ServiceProviderPackageController::class, 'complete'])->name('service-provider.package.complete');
     Route::get('/service-provider/profile', [ServiceProviderProfileController::class, 'index'])->name('service-provider.profile');
     Route::post('/service-provider/profile/{profile}', [ServiceProviderProfileController::class, 'update'])->name('service-provider.profile.update');
 });

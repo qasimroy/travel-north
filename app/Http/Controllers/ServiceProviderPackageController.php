@@ -126,4 +126,29 @@ class ServiceProviderPackageController extends Controller
         $packageBookings = packageBooking::with('user')->where('package_id', $package->id)->get();
         return view('service-provider.explore-package', compact('package', 'packageBookings'));
     }
+    public function reject(Request $request, int $id)
+    {
+        $packageBooking = packageBooking::find($id);
+        $packageBooking->status = packageBooking::REJECTED;
+        $packageBooking->save();
+
+        return redirect()->back();
+    }
+    public function accept(Request $request, int $id)
+    {
+        $packageBooking = packageBooking::find($id);
+        $packageBooking->status = packageBooking::ACCEPTED;
+        $packageBooking->save();
+
+        return redirect()->back();
+    }
+    public function complete(Request $request, int $id)
+    {
+        $packageBooking = packageBooking::find($id);
+        $packageBooking->status = packageBooking::COMPLETED;
+        $packageBooking->save();
+
+        return redirect()->back();
+    }
+    
 }

@@ -133,45 +133,62 @@
                                                 @elseif ($packageBooking->status == 'completed')
                                                     <td class="text-success">Completed</td>
                                                 @endif
-                                                <td>
+                                                <td class="d-flex justify-content-center">
                                                     @if ($packageBooking->status == 'pending')
-                                                        <a href="#" type="button"
-                                                            class="btn btn-outline-success rounded-pill"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-bs-custom-class="accept-tooltip" data-bs-title="Accept">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                height="20" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="1"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="lucide lucide-check">
-                                                                <polyline points="20 6 9 17 4 12" />
-                                                            </svg>
-                                                        </a>
-                                                        <a href="#" class="btn btn-outline-danger rounded-pill"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-bs-custom-class="reject-tooltip" data-bs-title="Reject">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                height="20" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="1"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="lucide lucide-x">
-                                                                <path d="M18 6 6 18" />
-                                                                <path d="m6 6 12 12" />
-                                                            </svg>
-                                                        </a>
+                                                        <form class="mx-1"
+                                                            action="{{ route('service-provider.package.accept', ['id' => $packageBooking]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <button class="btn btn-outline-success rounded-pill"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-custom-class="accept-tooltip"
+                                                                data-bs-title="Accept">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                    height="20" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="1"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="lucide lucide-check">
+                                                                    <polyline points="20 6 9 17 4 12" />
+                                                                </svg>
+                                                            </button>
+                                                        </form>
+                                                        <form
+                                                            action="{{ route('service-provider.package.reject', ['id' => $packageBooking]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <button class="btn btn-outline-danger rounded-pill"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-custom-class="reject-tooltip"
+                                                                data-bs-title="Reject">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                    height="20" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="1"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="lucide lucide-x">
+                                                                    <path d="M18 6 6 18" />
+                                                                    <path d="m6 6 12 12" />
+                                                                </svg>
+                                                            </button>
+                                                        </form>
                                                     @elseif ($packageBooking->status == 'accepted')
-                                                        <a href="#" class="btn btn-outline-success rounded-pill"
-                                                            data-bs-toggle="tooltip" data-bs-placement="top"
-                                                            data-bs-custom-class="accept-tooltip" data-bs-title="Complete">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                height="20" viewBox="0 0 24 24" fill="none"
-                                                                stroke="currentColor" stroke-width="1"
-                                                                stroke-linecap="round" stroke-linejoin="round"
-                                                                class="lucide lucide-check-check">
-                                                                <path d="M18 6 7 17l-5-5" />
-                                                                <path d="m22 10-7.5 7.5L13 16" />
-                                                            </svg>
-                                                        </a>
+                                                        <form
+                                                            action="{{ route('service-provider.package.complete', ['id' => $packageBooking]) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            <button class="btn btn-outline-success rounded-pill"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                data-bs-custom-class="accept-tooltip"
+                                                                data-bs-title="Complete">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                    height="20" viewBox="0 0 24 24" fill="none"
+                                                                    stroke="currentColor" stroke-width="1"
+                                                                    stroke-linecap="round" stroke-linejoin="round"
+                                                                    class="lucide lucide-check-check">
+                                                                    <path d="M18 6 7 17l-5-5" />
+                                                                    <path d="m22 10-7.5 7.5L13 16" />
+                                                                </svg>
+                                                            </button>
+                                                        </form>
                                                     @else
                                                         &nbsp;
                                                     @endif
