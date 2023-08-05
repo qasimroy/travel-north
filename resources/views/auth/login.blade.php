@@ -13,7 +13,8 @@
 
                             <x-form-checkbox name="remember" label="Remember Me" />
 
-                            <x-form-submit>Login</x-form-submit>
+                            <x-form-submit class="text-white">Login</x-form-submit>
+                            <a href="{{ route('register') }}" class="btn btn-secondary">Register</a>
 
                             {{-- @if (Route::has('password.request'))
                             <a class="btn btn-link" href="{{ route('password.request') }}">Forgot Your Password?</a>

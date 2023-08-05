@@ -148,13 +148,13 @@
                                                     {{ $packageBooking->package->days - 1 }} Nights</p>
                                                 <p>Rs. {{ $packageBooking->package->price * $packageBooking->persons }}</p>
                                                 <p>Status: @if ($packageBooking->status == 'pending')
-                                                        <h5 class="text-secondary">Pending</h5>
+                                                        <b class="text-secondary">Pending</b>
                                                     @elseif ($packageBooking->status == 'accepted')
-                                                        <h5 class="text-success">Accepted</h5>
+                                                        <b class="text-success">Accepted</b>
                                                     @elseif ($packageBooking->status == 'rejected')
-                                                        <h5 class="text-danger">Rejected</h5>
+                                                        <b class="text-danger">Rejected</b>
                                                     @elseif ($packageBooking->status == 'completed')
-                                                        <h5 class="text-success">Completed</h5>
+                                                        <b class="text-success">Completed</b>
                                                     @endif
                                                 </p>
                                             </div>

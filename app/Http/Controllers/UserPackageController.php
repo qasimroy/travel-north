@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Package;
 use App\Models\packageBooking;
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
+use Redirect;
 use PhpParser\Node\Expr\FuncCall;
 
 class UserPackageController extends Controller
@@ -30,9 +32,14 @@ class UserPackageController extends Controller
     }
     public function book(int $id)
     {
-        $package = Package::where('id', $id)->first();
-        $user_id = User::where('id', auth()->user()->id)->pluck('id')->first();
-        return view('user.package-book', compact('package', 'user_id'));
+        $package = Package::find($id);
+        $user_id = Auth::id();
+
+        if ($user_id) {
+            return view('user.package-book', compact('package', 'user_id'));
+        } else {
+            return Redirect::route('login', ['redirect' => route('package.book', ['id' => $id])]);
+        }
     }
     public function store(Request $request)
     {
@@ -49,7 +56,7 @@ class UserPackageController extends Controller
         $packageBooking->status = packageBooking::PENDING;
 
         $packageBooking->save();
-        return redirect()->route('user.package')->with('success', 'Package Booked Successfully!');
+        return redirect()->route('user.bookings.show')->with('success', 'Package Booked Successfully!');
     }
     public function show()
     {

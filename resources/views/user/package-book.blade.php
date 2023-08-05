@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     @include('user.layouts.header')
-    <h2 class="fs-2 m-0">Edit Booking</h2>
+    <h2 class="fs-2 m-0">Book Package</h2>
     </div>
     </nav>
 
