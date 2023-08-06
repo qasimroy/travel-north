@@ -30,10 +30,16 @@
                         <td>{{ $ServiceProvider->address }}</td>
                         <td>
                             <a
-                                href="{{ route('admin.service-providers.edit', ['ServiceProvider' => $ServiceProvider->id]) }}"><button
-                                    class="btn btn-outline-success">Edit</button></a>
-
-                            <a href=""><button class="btn btn-danger">Trash</button></a>
+                                href="{{ route('admin.service-providers.edit', ['ServiceProvider' => $ServiceProvider->id]) }}">
+                                <button class="btn btn-outline-success">
+                                    Edit
+                                </button>
+                            </a>
+                            <a href="">
+                                <button class="btn btn-danger">
+                                    Trash
+                                </button>
+                            </a>
                         </td>
                     </tr>
                     @php
