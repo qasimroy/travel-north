@@ -6,7 +6,7 @@
     </div>
     </nav>
     <div class="container-fluid p-4">
-        <table class="table">
+        <table class="table text-center bg-white rounded">
             <thead>
                 <tr>
                     <th>Sr No.</th>
@@ -29,9 +29,16 @@
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->address }}</td>
                         <td>
-                            <a href="{{ route('admin.users.edit', ['user' => $user->id]) }}"><button
-                                    class="btn btn-outline-success">Edit</button></a>
-                            <a href=""><button class="btn btn-danger">Trash</button></a>
+                            <a href="{{ route('admin.users.edit', ['user' => $user->id]) }}">
+                                <button class="btn btn-outline-success">
+                                    Edit
+                                </button>
+                            </a>
+                            <a href="">
+                                <button class="btn btn-outline-danger">
+                                    Trash
+                                </button>
+                            </a>
                         </td>
                     </tr>
                     @php

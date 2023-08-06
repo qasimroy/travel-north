@@ -29,17 +29,17 @@ class AdminServiceProviderController extends Controller
         $users->address = $request->input('address');
         $users->save();
 
-        return redirect()->route('admin.service-providers');
+        return redirect()->route('admin.service-providers')->with('success', 'Service Provider Updated Successfully!');
     }
     public function destroy(Request $request, $ServiceProvider)
     {
         $serviceProvider = User::find($ServiceProvider);
 
         if (!$serviceProvider) {
-            return redirect()->route('admin.service-providers')->with('error', 'User not found.');
+            return redirect()->route('admin.service-providers')->with('error', 'Service Provider not found.');
         }
         $serviceProvider->delete();
 
-        return redirect()->route('admin.service-providers')->with('success', 'User deleted successfully.');
+        return redirect()->route('admin.service-providers')->with('success', 'Service Provider deleted successfully.');
     }
 }

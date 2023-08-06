@@ -6,7 +6,7 @@
     </div>
     </nav>
     <div class="container-fluid px-4">
-        <form action="{{ route('admin.service-providers.update', $user) }}" method="POST">
+        <form action="{{ route('admin.users.update', $user) }}" method="POST">
             @csrf
             <div class="container w-75 pt-5">
                 <div class="row bg-white p-5 rounded">
