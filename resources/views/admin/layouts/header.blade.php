@@ -2,27 +2,31 @@
     <!-- Sidebar -->
     <div class="bg-white rounded-end" id="sidebar-wrapper">
         <div class="list-group list-group-flush my-3">
-            <a href="{{ url('/home') }}"
+            <a href="{{ route('admin.home') }}"
                 class="list-group-item list-group-item-action bg-transparent second-text active">
                 <i class="fas fa-tachometer-alt me-2"></i>Dashboard
             </a>
-            <a href="{{ url('/bookings') }}"
+            <a href="{{ route('admin.bookings') }}"
                 class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
                 <i class="fas fa-book me-2"></i>Bookings
             </a>
-            <a href="{{ url('/package') }}"
+            <a href="{{ route('admin.package') }}"
                 class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
                 <i class="fas fa-gift me-2"></i>Package
             </a>
-            <a href="{{ url('/service-providers') }}"
+            <a href="{{ route('admin.service-providers') }}"
                 class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
                 <i class="fas fa-users me-2"></i>Service Providers
             </a>
-            <a href="{{ url('/services') }}"
+            <a href="{{ route('admin.users') }}"
+                class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
+                <i class="fas fa-users me-2"></i>Users
+            </a>
+            <a href="{{ route('admin.services') }}"
                 class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
                 <i class="fas fa-wrench me-2"></i>Services
             </a>
-            <a href="{{ url('/profile') }}"
+            <a href="{{ route('admin.profile') }}"
                 class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
                 <i class="fas fa-user me-2"></i>Profile
             </a>

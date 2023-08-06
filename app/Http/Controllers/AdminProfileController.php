@@ -10,7 +10,6 @@ class AdminProfileController extends Controller
     public function index()
     {
         $user = auth()->user();
-
         return view('admin.profile', compact('user'));
     }
     public function update(Request $request)

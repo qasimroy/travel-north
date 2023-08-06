@@ -11,6 +11,7 @@ use App\Http\Controllers\ServiceProviderBookingController;
 use App\Http\Controllers\UserServiceProviderController;
 use App\Http\Controllers\UserBookingController;
 use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\BookingsController;
 use App\Http\Controllers\ServiceProviderController;
 use App\Http\Controllers\ServiceController;
@@ -117,7 +118,15 @@ Route::group(['middleware' => ['restrict.service-provider']], function () {
 Route::group(['middleware' => ['restrict.admin']], function () {
     Route::get('/admin/home', [AdminHomeController::class, 'index'])->name('admin.home');
     Route::get('/admin/bookings', [AdminBookingController::class, 'index'])->name('admin.bookings');
+    Route::get('/admin/bookings/pending', [AdminBookingController::class, 'pending'])->name('admin.bookings.pending');
+    Route::get('/admin/bookings/accepted', [AdminBookingController::class, 'accepted'])->name('admin.bookings.accepted');
+    Route::get('/admin/bookings/rejected', [AdminBookingController::class, 'rejected'])->name('admin.bookings.rejected');
+    Route::get('/admin/bookings/completed', [AdminBookingController::class, 'completed'])->name('admin.bookings.completed');
+    Route::get('/admin/bookings/package', [AdminPackageController::class, 'show'])->name('admin.bookings.package');
     Route::get('/admin/service-providers', [AdminServiceProviderController::class, 'index'])->name('admin.service-providers');
+    Route::get('/admin/service-providers/{ServiceProvider}/edit', [AdminServiceProviderController::class, 'edit'])->name('admin.service-providers.edit');
+    Route::post('/admin/service-providers/{ServiceProvider}', [AdminServiceProviderController::class, 'update'])->name('admin.service-providers.update');
+    Route::delete('/admin/service-providers/{ServiceProvider}', [AdminServiceProviderController::class, 'destroy'])->name('admin.service-providers.destroy');
     Route::get('/admin/services', [AdminServicesController::class, 'index'])->name('admin.services');
     Route::post('/admin/services', [AdminServicesController::class, 'store'])->name('admin.services.store');
     Route::get('/admin/services/{service}/edit', [AdminServicesController::class, 'edit'])->name('admin.services.edit');
@@ -126,4 +135,8 @@ Route::group(['middleware' => ['restrict.admin']], function () {
     Route::get('/admin/package',[AdminPackageController::class, 'index'])->name('admin.package');
     Route::get('/admin/profile', [AdminProfileController::class, 'index'])->name('admin.profile');
     Route::post('/admin/profile/{profile}', [AdminProfileController::class, 'update'])->name('admin.profile.update');
+    Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users');
+    Route::get('/admin/users/{user}/edit', [AdminUserController::class, 'edit'])->name('admin.users.edit');
+    Route::post('/admin/users/{user}', [AdminUserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
 });

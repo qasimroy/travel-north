@@ -2,11 +2,11 @@
 
 @section('content')
     @include('admin.layouts.header')
-    <h2 class="fs-2 m-0">Service Providers</h2>
+    <h2 class="fs-2 m-0">Users</h2>
     </div>
     </nav>
     <div class="container-fluid p-4">
-        <table class="table bg-white rounded mx-auto text-center">
+        <table class="table">
             <thead>
                 <tr>
                     <th>Sr No.</th>
@@ -21,18 +21,16 @@
                 @php
                     $count = 1;
                 @endphp
-                @foreach ($serviceProvider as $ServiceProvider)
+                @foreach ($users as $user)
                     <tr>
                         <td>{{ $count }}</td>
-                        <td>{{ $ServiceProvider->name }}</td>
-                        <td>{{ $ServiceProvider->email }}</td>
-                        <td>{{ $ServiceProvider->phone }}</td>
-                        <td>{{ $ServiceProvider->address }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->phone }}</td>
+                        <td>{{ $user->address }}</td>
                         <td>
-                            <a
-                                href="{{ route('admin.service-providers.edit', ['ServiceProvider' => $ServiceProvider->id]) }}"><button
+                            <a href="{{ route('admin.users.edit', ['user' => $user->id]) }}"><button
                                     class="btn btn-outline-success">Edit</button></a>
-
                             <a href=""><button class="btn btn-danger">Trash</button></a>
                         </td>
                     </tr>

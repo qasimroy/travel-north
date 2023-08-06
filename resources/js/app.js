@@ -287,4 +287,30 @@ $(document).ready(function () {
             window.location.href = url;
         }
     });
+
+    $('select[name="book"]').on('change', function () {
+        var selectedOption = $(this).val();
+        var url = "/admin/bookings";
+        switch (selectedOption) {
+            case 'all':
+                url = "/admin/bookings";
+                break;
+            case 'pending':
+                url = "/admin/bookings/pending";
+                break;
+            case 'accepted':
+                url = "/admin/bookings/accepted";
+                break;
+            case 'rejected':
+                url = "/admin/bookings/rejected";
+                break;
+            case 'completed':
+                url = "/admin/bookings/completed";
+                break;
+        }
+        if (url) {
+            window.location.href = url;
+        }
+    });
+
 });
