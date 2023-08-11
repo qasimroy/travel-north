@@ -14,7 +14,7 @@ class UserPackageController extends Controller
 {
     public function index()
     {
-        $packages = Package::where('status', 'Open')->get();
+        $packages = Package::where('status', 'Open')->inRandomOrder()->get();
 
         foreach ($packages as $package) {
             $packageBookings = packageBooking::where('package_id', $package->id)->get();
