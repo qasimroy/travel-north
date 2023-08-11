@@ -25,6 +25,7 @@
                             <hr>
                             <p class="card-text">{{ $package->days }} Days & {{ $package->days - 1 }} Nights <br>
                                 Rs. {{ $package->price }} <br>
+                                Seats Remaining: {{ $package->seat - $package->persons_booked }}
                                 @if ($package->status == 'Open')
                                     <h5 class="text-success">Open</h5>
                                 @elseif ($package->status == 'Closed')
@@ -108,52 +109,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                {{-- <div class="modal fade" id="staticBackdrop{{ $package->id }}" tabindex="-1"
-                                    role="dialog" aria-labelledby="staticBackdrop{{ $package->id }}Label"
-                                    data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
-                                    <div class="modal-dialog " role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="staticBackdrop{{ $package->id }}Label">
-                                                    Package
-                                                    Details
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>We are providing a tour plan for {{ $package->days }} days from
-                                                    <b>{{ $package->origin }}</b> to <b>{{ $package->destination }}</b>
-                                                    which will start on {{ $package->start_date }} and will end on
-                                                    {{ $package->end_date }}.
-                                                </p>
-                                                <p>The services we are providing are:
-                                                <ul>
-                                                    <li>Luxury {{ $package->hotel }} Hotel</li>
-                                                    <li>Comfortable {{ $package->coach }} Coach</li>
-                                                    @if ($package->shuttle != null)
-                                                        <li>{{ $package->shuttle }} Shuttle Service</li>
-                                                    @endif
-                                                </ul>
-                                                </p>
-                                                <p>{{ $package->days }} Days & {{ $package->days - 1 }} Nights</p>
-                                                <p>Rs. {{ $package->price }}</p>
-                                                <p>Status: @if ($package->status == 'Open')
-                                                        <b class="text-success">Open</b>
-                                                    @elseif ($package->status == 'Closed')
-                                                        <b class="text-danger">Closed</b>
-                                                    @endif
-                                                </p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
