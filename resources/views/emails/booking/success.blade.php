@@ -36,6 +36,8 @@
                     <li><strong>Price:</strong> {{ $booking->price }}</li>
                 </ul>
 
+                <p class="lead">You will be informed soon if your booking gets accepted so please hang tight.</p>
+
                 <div class="text-center mt-4">
                     <a href="{{ $url }}" class="btn btn-primary text-white">View Booking</a>
                 </div>
