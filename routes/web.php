@@ -140,3 +140,4 @@ Route::group(['middleware' => ['restrict.admin']], function () {
     Route::post('/admin/users/{user}', [AdminUserController::class, 'update'])->name('admin.users.update');
     Route::delete('/admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
 });
+Route::get('/testing', [UserBookingController::class, 'test']);

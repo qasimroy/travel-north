@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingSuccessEmail;
 use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,7 @@ use App\Models\ServiceProviderServices;
 use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
+use Mail;
 
 class UserBookingController extends Controller
 {
@@ -89,7 +91,7 @@ class UserBookingController extends Controller
         ]);
 
         $user_id = Auth::id();
-
+        $user = Auth::user();
         $booking = new Booking();
         $booking->user_id = $user_id;
         $booking->start_date = Carbon::createFromFormat("Y-m-d", $validatedData['startDate'])->toDateTimeString();
@@ -104,8 +106,10 @@ class UserBookingController extends Controller
         $booking->shuttle = $validatedData['shuttle'] ?? null;
         $booking->price = $request->input('price');
         $booking->status = Booking::PENDING;
-
+        $url = 'http://127.0.0.1:8000/user/bookings';
         $booking->save();
+        Mail::to($user->email)->send(new BookingSuccessEmail($booking, $user, $url));
+
 
         return redirect()->route('user.bookings')->with('success', 'Booking created successfully.');
     }
@@ -185,5 +189,13 @@ class UserBookingController extends Controller
             ->with('serviceProvider')
             ->get()
             ->toArray();
+    }
+
+    public function test() {
+        $user = User::where('id', 3)->first();
+        $booking = Booking::where('id', 26)->first();
+        $url = 'http://127.0.0.1:8000/user/bookings';
+
+        Mail::to($user->email)->send(new BookingSuccessEmail($booking, $user, $url));
     }
 }
