@@ -36,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <table class="table bg-white rounded text-center">
+        <table class="table bg-white rounded text-center shadow-sm table-hover">
             <thead>
                 <tr>
                     <th>Sr No.</th>
