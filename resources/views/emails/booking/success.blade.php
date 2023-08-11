@@ -29,7 +29,9 @@
                     <li><strong>Start Date:</strong> {{ $booking->start_date }}</li>
                     <li><strong>End Date:</strong> {{ $booking->end_date }}</li>
                     <li><strong>Origin:</strong> {{ $booking->origin }}</li>
-                    <li><strong>Destination:</strong> {{ $booking->destination }}</li>
+                    @if ($booking->destination != null)
+                        <li><strong>Destination:</strong> {{ $booking->destination }}</li>
+                    @endif
                     <li><strong>No. of Persons:</strong> {{ $booking->person }}</li>
                     <li><strong>Price:</strong> {{ $booking->price }}</li>
                 </ul>
