@@ -12,6 +12,7 @@ php artisan config:clear
 php artisan migrate
 php artisan db:Seed --class=RolesAndPermissionsSeeder
 php artisan db:Seed --class=ServicesSeeder
+php artisan storage:link
 ```
 
 ## Running the project
